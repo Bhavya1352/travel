@@ -186,8 +186,7 @@ export default function Itinerary() {
 
     setTimeout(() => {
       setDaysPlan((prev) =>
-        prev.map((day) => {
-          if (!day || !day.day) return day;
+        prev.filter((day) => day && typeof day.day === 'number').map((day) => {
           
           if (refId === 'cheaper') {
             return {

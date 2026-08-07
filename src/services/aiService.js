@@ -90,41 +90,34 @@ export async function generateItinerary(plan) {
   const destName = (plan.destination || 'Santorini').split(',')[0].trim();
   
   // Transform sample itinerary to match expected structure
-  const transformedDaysPlan = SAMPLE_ITINERARY.days_plan.map((day) => {
-    if (!day || !day.activities) {
-      return {
-        day: 1,
-        label: 'Day 01',
-        title: 'Exploration Day',
-        location: 'City Center',
-        morning: 'Morning exploration of local attractions.',
-        afternoon: 'Afternoon sightseeing and cultural experiences.',
-        evening: 'Evening dining and relaxation.',
-        budget: 100,
-        weather: { temp: 24, condition: 'Sunny' },
-        travelTime: '15-30 min between locations',
-        note: 'Default day plan'
+  const transformedDaysPlan = SAMPLE_ITINERARY.days_plan
+    .filter((day) => day && typeof day.day === 'number')
+    .map((day) => {
+      const activities = Array.isArray(day.activities) ? day.activities : [];
+
+      const getHour = (a) => {
+        if (!a?.time) return -1;
+        return parseInt(a.time.split(':')[0], 10);
       };
-    }
-    
-    const morningActivity = day.activities.find(a => a.time && (a.time.startsWith('0') || (a.time.startsWith('1') && parseInt(a.time) < 12)));
-    const afternoonActivity = day.activities.find(a => a.time && a.time.startsWith('1') && parseInt(a.time) >= 12 && parseInt(a.time) < 18);
-    const eveningActivity = day.activities.find(a => a.time && ((a.time.startsWith('1') && parseInt(a.time) >= 18) || a.time.startsWith('2')));
-    
-    return {
-      day: day.day || 1,
-      label: `Day ${String(day.day || 1).padStart(2, '0')}`,
-      title: day.title || 'Day Activities',
-      location: morningActivity?.location?.name || 'City Center',
-      morning: morningActivity?.description || 'Morning exploration of local attractions and neighborhoods.',
-      afternoon: afternoonActivity?.description || 'Afternoon sightseeing and cultural experiences.',
-      evening: eveningActivity?.description || 'Evening dining and relaxation.',
-      budget: day.activities ? day.activities.reduce((sum, act) => sum + (act?.cost || 0), 0) : 100,
-      weather: { temp: plan.destination.toLowerCase().includes('banff') ? 12 : 24, condition: 'Sunny' },
-      travelTime: '15-30 min between locations',
-      note: day.theme || 'Balanced day with mixed activities'
-    };
-  });
+
+      const morningActivity = activities.find(a => { const h = getHour(a); return h >= 0 && h < 12; });
+      const afternoonActivity = activities.find(a => { const h = getHour(a); return h >= 12 && h < 18; });
+      const eveningActivity = activities.find(a => { const h = getHour(a); return h >= 18; });
+
+      return {
+        day: day.day,
+        label: `Day ${String(day.day).padStart(2, '0')}`,
+        title: day.title || 'Day Activities',
+        location: morningActivity?.location?.name || 'City Center',
+        morning: morningActivity?.description || 'Morning exploration of local attractions and neighborhoods.',
+        afternoon: afternoonActivity?.description || 'Afternoon sightseeing and cultural experiences.',
+        evening: eveningActivity?.description || 'Evening dining and relaxation.',
+        budget: activities.reduce((sum, act) => sum + (act?.cost || 0), 0) || 100,
+        weather: { temp: plan.destination.toLowerCase().includes('banff') ? 12 : 24, condition: 'Sunny' },
+        travelTime: '15-30 min between locations',
+        note: day.theme || 'Balanced day with mixed activities'
+      };
+    });
   
   return {
     ...SAMPLE_ITINERARY,
