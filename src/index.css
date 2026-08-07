@@ -1,0 +1,128 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-xs: 320px;
+  --breakpoint-sm: 376px;
+  --breakpoint-md: 481px;
+  --breakpoint-lg: 769px;
+  --breakpoint-xl: 1025px;
+  --breakpoint-2xl: 1367px;
+  --breakpoint-3xl: 1601px;
+  --breakpoint-4xl: 1921px;
+}
+
+/* Performance-optimized font loading */
+@font-face {
+  font-family: 'Inter-fallback';
+  src: local('Arial');
+  font-display: swap;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+@font-face {
+  font-family: 'Cormorant-fallback';
+  src: local('Georgia');
+  font-display: swap;
+  ascent-override: 88%;
+  descent-override: 25%;
+  line-gap-override: 0%;
+}
+
+@layer base {
+  :root {
+    --color-sand: #f5f0eb;
+    --color-charcoal: #1c1c1e;
+    --color-deep-green: #1a2e22;
+    --color-forest: #2d4a38;
+    --color-accent: #c8601a;
+    --color-accent-light: #e07a35;
+    --color-warm-white: #faf8f5;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Performance optimizations */
+    -webkit-overflow-scrolling: touch;
+    text-rendering: optimizeSpeed;
+  }
+
+  body {
+    background-color: var(--color-warm-white);
+    color: var(--color-charcoal);
+    font-family: 'Inter', 'Inter-fallback', system-ui, -apple-system, sans-serif;
+    font-display: swap;
+    /* Improve paint performance */
+    contain: layout style;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
+  /* Optimize image loading and prevent layout shift */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    /* Prevent layout shift */
+    aspect-ratio: attr(width) / attr(height);
+  }
+  
+  /* Performance: Contain layout shifts */
+  .hero-container {
+    contain: layout style paint;
+  }
+  
+  /* Optimize for slow connections */
+  @media (prefers-reduced-data: reduce) {
+    img {
+      loading: lazy;
+    }
+  }
+  
+  /* Reduce motion for accessibility and performance */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Cormorant Garamond', 'Cormorant-fallback', Georgia, serif;
+    font-display: swap;
+  }
+  .font-sans {
+    font-family: 'Inter', 'Inter-fallback', system-ui, -apple-system, sans-serif;
+    font-display: swap;
+  }
+  
+  /* Performance utilities */
+  .will-change-transform {
+    will-change: transform;
+  }
+  .will-change-auto {
+    will-change: auto;
+  }
+  .contain-layout {
+    contain: layout;
+  }
+  .contain-strict {
+    contain: strict;
+  }
+}

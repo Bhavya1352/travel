@@ -1,0 +1,47 @@
+// Mock saved trips for the "My Trips" page.
+// In production these would come from Supabase or a backend API.
+
+export const SAVED_TRIPS = [
+  {
+    id: 'trip-001',
+    destination: 'Santorini, Greece',
+    startDate: '2025-06-15',
+    endDate: '2025-06-19',
+    days: 5,
+    travelers: 2,
+    budget: 'midrange',
+    travelStyle: 'balanced',
+    status: 'planned',
+    image: 'https://images.pexels.com/photos/4084639/pexels-photo-4084639.jpeg',
+    totalCost: 1850,
+    createdAt: '2025-01-12T10:30:00Z',
+  },
+  {
+    id: 'trip-002',
+    destination: 'Kyoto, Japan',
+    startDate: '2025-03-28',
+    endDate: '2025-04-04',
+    days: 7,
+    travelers: 1,
+    budget: 'midrange',
+    travelStyle: 'cultural',
+    status: 'completed',
+    image: 'https://images.pexels.com/photos/161251/senso-ji-temple-japan-kyoto-landmark-161251.jpeg',
+    totalCost: 1620,
+    createdAt: '2025-01-05T14:20:00Z',
+  },
+  {
+    id: 'trip-003',
+    destination: 'Marrakech, Morocco',
+    startDate: '2025-10-10',
+    endDate: '2025-10-15',
+    days: 6,
+    travelers: 3,
+    budget: 'budget',
+    travelStyle: 'adventure',
+    status: 'draft',
+    image: 'https://images.pexels.com/photos/1469845/pexels-photo-1469845.jpeg',
+    totalCost: 980,
+    createdAt: '2025-02-01T09:15:00Z',
+  },
+];
