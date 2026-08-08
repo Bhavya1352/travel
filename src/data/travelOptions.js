@@ -31,7 +31,7 @@ export const BUDGET_TIERS = [
 ];
 
 export const NAV_LINKS = [
-  { label: 'Destinations', href: '/planner' },
+  { label: 'Destinations', href: '/destinations' },
   { label: 'Trip Planner', href: '/planner' },
   { label: 'My Trips', href: '/my-trips' },
 ];

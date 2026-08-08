@@ -1,14 +1,51 @@
-// Real-world Exchange Rate Conversion service using the free Frankfurter API.
+// Real-world Exchange Rate Conversion service
+// Uses the free Frankfurter API
 
-export async function convertCurrency(amount, from = 'INR', to = 'JPY') {
+export async function convertCurrency(
+  amount,
+  from = 'EUR',
+  to = 'INR'
+) {
   const normalizedFrom = from.toUpperCase();
   const normalizedTo = to.toUpperCase();
 
-  if (normalizedFrom === normalizedTo) return amount;
+  if (normalizedFrom === normalizedTo) {
+    return Math.round(amount);
+  }
 
-  const res = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${normalizedFrom}&to=${normalizedTo}`);
-  if (!res.ok) throw new Error('Exchange rate service unavailable');
-  
-  const data = await res.json();
-  return Math.round(data.rates[normalizedTo]);
+  try {
+    const response = await fetch(
+      `https://api.frankfurter.dev/v2/rate/${normalizedFrom}/${normalizedTo}`
+    );
+
+    if (!response.ok) {
+      throw new Error(
+        `Currency API failed: ${response.status}`
+      );
+    }
+
+    const data = await response.json();
+
+    if (!data.rate) {
+      throw new Error('Exchange rate not available');
+    }
+
+    const convertedAmount =
+      Number(amount) * Number(data.rate);
+
+    console.log(
+      `Currency conversion: ${amount} ${normalizedFrom} → ${convertedAmount} ${normalizedTo}`
+    );
+
+    return Math.round(convertedAmount);
+
+  } catch (error) {
+    console.error(
+      'Currency API error:',
+      error
+    );
+
+    // Return original amount instead of fake exchange rate
+    return Math.round(amount);
+  }
 }

@@ -1,3 +1,6 @@
+import "leaflet/dist/leaflet.css";
+
+
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -40,6 +43,7 @@ export default function Itinerary() {
   const [searchParams] = useSearchParams();
   const [loadingStep, setLoadingStep] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [animationDone, setAnimationDone] = useState(false);
   const [activeDay, setActiveDay] = useState(1);
   const [activeRefinement, setActiveRefinement] = useState(null);
   const [isRefining, setIsRefining] = useState(false);
@@ -114,6 +118,7 @@ export default function Itinerary() {
   const [daysPlan, setDaysPlan] = useState([]);
   const [isItineraryLoading, setIsItineraryLoading] = useState(true);
   const [itineraryError, setItineraryError] = useState(null);
+  const [isAiGenerated, setIsAiGenerated] = useState(null);
 
   // Generate AI itinerary on component mount
   useEffect(() => {
@@ -131,17 +136,16 @@ export default function Itinerary() {
         console.log('Generated itinerary:', generatedItinerary);
         if (generatedItinerary && generatedItinerary.days_plan && generatedItinerary.days_plan.length > 0) {
           setDaysPlan(generatedItinerary.days_plan);
+          setIsAiGenerated(generatedItinerary.isAiGenerated === true);
         } else {
           console.error('Invalid itinerary structure:', generatedItinerary);
           setItineraryError('Failed to generate itinerary. Please try again.');
         }
         setIsItineraryLoading(false);
-        setIsLoading(false);
       } catch (error) {
         console.error('Failed to generate itinerary:', error);
         setItineraryError('Failed to generate itinerary. Please try again.');
         setIsItineraryLoading(false);
-        setIsLoading(false);
       }
     }
     loadItinerary();
@@ -162,14 +166,14 @@ export default function Itinerary() {
     loadCurrency();
   }, [currencyCode, daysPlan]);
 
-  // Loading Steps progression animation
+  // Loading Steps progression animation — marks animation as done when complete
   useEffect(() => {
     if (!isLoading) return;
     const interval = setInterval(() => {
       setLoadingStep((prev) => {
         if (prev >= 3) {
           clearInterval(interval);
-          setTimeout(() => setIsLoading(false), 800);
+          setTimeout(() => setAnimationDone(true), 800);
           return prev;
         }
         return prev + 1;
@@ -177,6 +181,13 @@ export default function Itinerary() {
     }, 1200);
     return () => clearInterval(interval);
   }, [isLoading]);
+
+  // Only hide loading screen when BOTH animation AND data are ready
+  useEffect(() => {
+    if (animationDone && !isItineraryLoading) {
+      setIsLoading(false);
+    }
+  }, [animationDone, isItineraryLoading]);
 
   // Handle AI Refinement simulations
   const handleRefine = (refId) => {
@@ -187,7 +198,7 @@ export default function Itinerary() {
     setTimeout(() => {
       setDaysPlan((prev) =>
         prev.filter((day) => day && typeof day.day === 'number').map((day) => {
-          
+
           if (refId === 'cheaper') {
             return {
               ...day,
@@ -367,11 +378,23 @@ export default function Itinerary() {
                   <Sparkles className="h-4 w-4" />
                   Intelligently generated itinerary
                 </span>
+                {/* Real vs Mock badge */}
+                {isAiGenerated !== null && (
+                  <span className={cn(
+                    'mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest',
+                    isAiGenerated
+                      ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
+                      : 'bg-amber-100 text-amber-700 border border-amber-300'
+                  )}>
+                    <span className={cn('h-2 w-2 rounded-full', isAiGenerated ? 'bg-emerald-500' : 'bg-amber-500')} />
+                    {isAiGenerated ? '✅ Real AI Data (Gemini)' : '⚠️ Mock / Demo Data — Add API Key for real results'}
+                  </span>
+                )}
                 <h1 className="mt-3 font-serif text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-light text-[#1a2e22]">
                   {destinationName}
                 </h1>
                 <p className="mt-3 xs:mt-4 max-w-xs xs:max-w-sm sm:max-w-md lg:max-w-xl text-xs xs:text-sm sm:text-base font-light leading-relaxed text-[#1a2e22]/60">
-                  A personalized {daysPlan.length}-day flow optimized for a {travelStyle} style, 
+                  A personalized {daysPlan.length}-day flow optimized for a {travelStyle} style,
                   spending around your budget tier.
                 </p>
 
@@ -478,7 +501,7 @@ export default function Itinerary() {
                 ) : (
                   <AnimatePresence mode="wait">
                     <motion.div
-                      key={`${selectedDay.day}-${activeRefinement}-${isRefining}`}
+                      key={`${selectedDay?.day ?? 'day'}-${activeRefinement}-${isRefining}`}
                       initial={{ opacity: 0, y: 15 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -15 }}
@@ -496,51 +519,51 @@ export default function Itinerary() {
                           </h2>
                         </div>
                         <span className="rounded-full bg-[#1a2e22]/5 px-2.5 xs:px-3.5 py-0.5 xs:py-1 text-[10px] xs:text-xs font-medium text-[#1a2e22]/60">
-                          {activeDest.name}
+                          {destinationName}
                         </span>
                       </div>
 
-                    {/* AI Loading state inside dashboard container */}
-                    <AnimatePresence>
-                      {isRefining && (
-                        <motion.div
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          className="absolute inset-0 z-30 flex items-center justify-center bg-white/80 backdrop-blur-sm"
-                        >
-                          <div className="flex flex-col items-center gap-3 text-center">
-                            <motion.div
-                              animate={{ rotate: 360 }}
-                              transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-                            >
-                              <RefreshCw className="h-6 w-6 text-[#c8601a]" />
-                            </motion.div>
-                            <div>
-                              <p className="text-sm font-semibold">Regenerating itinerary flow...</p>
-                              <p className="text-xs text-[#1a2e22]/40 mt-0.5">Optimizing for style request</p>
+                      {/* AI Loading state inside dashboard container */}
+                      <AnimatePresence>
+                        {isRefining && (
+                          <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 z-30 flex items-center justify-center bg-white/80 backdrop-blur-sm"
+                          >
+                            <div className="flex flex-col items-center gap-3 text-center">
+                              <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
+                              >
+                                <RefreshCw className="h-6 w-6 text-[#c8601a]" />
+                              </motion.div>
+                              <div>
+                                <p className="text-sm font-semibold">Regenerating itinerary flow...</p>
+                                <p className="text-xs text-[#1a2e22]/40 mt-0.5">Optimizing for style request</p>
+                              </div>
                             </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
 
-                    {/* Timeline flow slots */}
-                    <div className="flex flex-col gap-4 xs:gap-5 sm:gap-6">
-                      <ItinerarySlot icon={SunMedium} title="Morning Activity" text={selectedDay.morning} />
-                      <ItinerarySlot icon={TreePine} title="Afternoon Activity" text={selectedDay.afternoon} />
-                      <ItinerarySlot icon={UtensilsCrossed} title="Evening Activity" text={selectedDay.evening} />
-                    </div>
-
-                    {/* Refinement confirmation tag */}
-                    {selectedDay.note && !isRefining && (
-                      <div className="mt-6 xs:mt-8 flex items-center gap-2 border-t border-[#1a2e22]/10 pt-3 xs:pt-4 text-[10px] xs:text-xs font-medium text-[#c8601a]">
-                        <Check className="h-4 w-4" />
-                        <span>{selectedDay.note}</span>
+                      {/* Timeline flow slots */}
+                      <div className="flex flex-col gap-4 xs:gap-5 sm:gap-6">
+                        <ItinerarySlot icon={SunMedium} title="Morning Activity" text={selectedDay.morning} />
+                        <ItinerarySlot icon={TreePine} title="Afternoon Activity" text={selectedDay.afternoon} />
+                        <ItinerarySlot icon={UtensilsCrossed} title="Evening Activity" text={selectedDay.evening} />
                       </div>
-                    )}
-                  </motion.div>
-                </AnimatePresence>
+
+                      {/* Refinement confirmation tag */}
+                      {selectedDay.note && !isRefining && (
+                        <div className="mt-6 xs:mt-8 flex items-center gap-2 border-t border-[#1a2e22]/10 pt-3 xs:pt-4 text-[10px] xs:text-xs font-medium text-[#c8601a]">
+                          <Check className="h-4 w-4" />
+                          <span>{selectedDay.note}</span>
+                        </div>
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
                 )}
               </div>
 
@@ -581,22 +604,21 @@ export default function Itinerary() {
                   </div>
                 </div>
 
-                {/* Map widget */}
+                {/* Map widget
                 <div className="py-6">
                   <h3 className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-[#1a2e22]/40 flex items-center gap-1.5">
                     <Navigation className="h-4 w-4 text-[#c8601a]" />
                     Map preview (Dynamic Coords)
                   </h3>
-                  <span className="text-xs xs:text-sm font-semibold">{activeDest.name} Context</span>
+                  <span className="text-xs xs:text-sm font-semibold">{destinationName} Context</span>
                   <div className="relative mt-2 xs:mt-3 h-36 xs:h-40 sm:h-44 overflow-hidden rounded-xl border border-[#1a2e22]/10 bg-white">
-                    <iframe
-                      title="OSM Live Map"
-                      src={`https://www.openstreetmap.org/export/embed.html?bbox=${coords.lng - 0.08},${coords.lat - 0.06},${coords.lng + 0.08},${coords.lat + 0.06}&layer=mapnik&marker=${coords.lat},${coords.lng}`}
-                      className="h-full w-full border-0 opacity-80"
-                      loading="lazy"
-                    />
+                  
+
+                    <p className="mt-1 text-[9px] text-[#1a2e22]/40">
+                      © OpenStreetMap contributors
+                    </p>
                   </div>
-                </div>
+                </div> */}
 
               </div>
 
