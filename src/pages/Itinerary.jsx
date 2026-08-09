@@ -1,5 +1,4 @@
-import "leaflet/dist/leaflet.css";
-
+// import "leaflet/dist/leaflet.css";
 
 import { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router-dom';
