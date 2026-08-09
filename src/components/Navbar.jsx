@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Compass } from 'lucide-react';
 import { NAV_LINKS } from '../data/travelOptions';
 import { cn } from '../utils/helpers';
 
@@ -42,20 +42,32 @@ export default function Navbar() {
     >
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10">
         {/* Brand */}
-        <Link to="/" className="flex items-center">
-          <span className={cn('font-serif text-lg xs:text-xl sm:text-2xl tracking-widest transition-colors duration-500', textColor)}>
+        <Link to="/" className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 group">
+          <motion.div 
+            whileHover={{ rotate: 180, scale: 1.1 }} 
+            transition={{ duration: 0.5 }}
+            className="relative"
+          >
+            <Compass className={cn('h-4 xs:h-5 sm:h-6 md:h-7 w-4 xs:w-5 sm:w-6 md:w-7 transition-colors duration-500', scrolled || isDarkPage ? 'text-[#c8601a]' : 'text-[#c8601a]')} strokeWidth={1.5} />
+            <motion.div 
+              className="absolute inset-0 bg-[#c8601a]/20 rounded-full blur-xl"
+              animate={{ scale: [1, 1.2, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            />
+          </motion.div>
+          <span className={cn('font-serif text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl tracking-widest transition-colors duration-500', textColor)}>
             Voyara
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden items-center gap-4 xs:gap-5 sm:gap-6 md:gap-7 lg:flex">
+        <div className="hidden items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:flex">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               to={link.href}
               className={cn(
-                'text-[10px] xs:text-[11px] sm:text-xs md:text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-[#c8601a]',
+                'text-[9px] xs:text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] transition-colors duration-300 hover:text-[#c8601a]',
                 subTextColor
               )}
             >
@@ -65,10 +77,10 @@ export default function Navbar() {
         </div>
 
         {/* Desktop actions */}
-        <div className="hidden items-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 lg:flex">
+        <div className="hidden items-center gap-2 xs:gap-3 sm:gap-4 md:gap-5 lg:flex">
           <Link
             to="/planner"
-            className="rounded-full bg-[#c8601a] px-3 xs:px-4 sm:px-5 md:px-6 py-1.5 xs:py-2 sm:py-2 md:py-2.5 text-[10px] xs:text-[11px] sm:text-xs md:text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#e07a35] hover:shadow-lg hover:shadow-[#c8601a]/25"
+            className="rounded-full bg-[#c8601a] px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 py-1 xs:py-1.5 sm:py-2 md:py-2.5 text-[9px] xs:text-[10px] sm:text-[11px] md:text-xs font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-[#e07a35] hover:shadow-lg hover:shadow-[#c8601a]/25"
           >
             Plan a Trip
           </Link>
@@ -77,7 +89,7 @@ export default function Navbar() {
         {/* Mobile toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className={cn('lg:hidden p-1', textColor)}
+          className={cn('lg:hidden p-1.5 xs:p-2', textColor)}
           aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
@@ -97,13 +109,13 @@ export default function Navbar() {
           exit={{ opacity: 0, height: 0 }}
           className="overflow-hidden bg-[#1c1c1e]/95 backdrop-blur-xl lg:hidden"
         >
-          <nav className="flex flex-col gap-5 px-6 py-7">
+          <nav className="flex flex-col gap-4 xs:gap-5 px-4 xs:px-6 py-5 xs:py-7">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}
                 to={link.href}
                 onClick={() => setMobileOpen(false)}
-                className="text-sm font-light text-white/70 hover:text-white"
+                className="text-xs xs:text-sm font-light text-white/70 hover:text-white"
               >
                 {link.label}
               </Link>
@@ -111,7 +123,7 @@ export default function Navbar() {
             <Link
               to="/planner"
               onClick={() => setMobileOpen(false)}
-              className="rounded-full bg-[#c8601a] px-6 py-3 text-center text-sm font-medium tracking-wide text-white"
+              className="rounded-full bg-[#c8601a] px-4 xs:px-6 py-2.5 xs:py-3 text-center text-xs xs:text-sm font-medium tracking-wide text-white"
               aria-label="Start planning your trip"
             >
               Plan a Trip

@@ -19,23 +19,23 @@ export default function ExploreDestinations() {
   const { isMobile, isSlowConnection } = useDeviceOptimization();
   
   return (
-    <section id="destinations" className="bg-[#faf8f5] py-12 xs:py-16 sm:py-20 lg:py-36 overflow-hidden">
+    <section id="destinations" className="bg-[#faf8f5] py-8 xs:py-12 sm:py-16 md:py-20 lg:py-36 overflow-hidden">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10">
 
         {/* Section header */}
-        <div className="mb-10 xs:mb-12 sm:mb-16 lg:mb-20 flex flex-col gap-3 xs:gap-4 sm:gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-8 xs:mb-10 sm:mb-12 md:mb-16 lg:mb-20 flex flex-col gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:flex-row lg:items-end lg:justify-between">
           <ScrollReveal variant="fadeLeft">
-            <p className="mb-2 xs:mb-3 text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#c8601a]">
+            <p className="mb-1.5 xs:mb-2 sm:mb-3 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-[0.28em] text-[#c8601a]">
               Curated Destinations
             </p>
-            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.1] text-[#1a2e22]">
+            <h2 className="font-serif text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-[1.1] text-[#1a2e22]">
               Destinations worth
               <br />
               <em>the journey.</em>
             </h2>
           </ScrollReveal>
           <ScrollReveal variant="fadeRight" delay={0.1}>
-            <p className="max-w-xs xs:max-w-sm sm:max-w-md text-xs xs:text-sm sm:text-base font-light leading-relaxed text-[#1a2e22]/55 lg:text-right">
+            <p className="max-w-[200px] xs:max-w-xs sm:max-w-sm md:max-w-md text-[10px] xs:text-xs sm:text-sm md:text-base font-light leading-relaxed text-[#1a2e22]/55 lg:text-right">
               Chosen for atmosphere, timing, and a genuine sense of place —
               not just the most-searched cities on a map.
             </p>
@@ -43,7 +43,7 @@ export default function ExploreDestinations() {
         </div>
 
         {/* Mosaic grid - changed to simple circular card layout */}
-        <div className="grid grid-cols-2 gap-4 xs:gap-6 sm:gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 xs:gap-6 sm:gap-8">
 
           {/* 01 — Santorini */}
           <ScrollReveal delay={0} variant="fadeUp">
@@ -69,14 +69,14 @@ export default function ExploreDestinations() {
 
         {/* Bottom link */}
         <ScrollReveal delay={0.1} variant="fade">
-          <div className="mt-12 xs:mt-16 sm:mt-20 flex items-center gap-4">
+          <div className="mt-8 xs:mt-12 sm:mt-16 md:mt-20 flex items-center gap-3 xs:gap-4">
             <div className="h-px flex-1 bg-[#1a2e22]/15" />
             <Link
               to="/destinations"
-              className="group flex items-center gap-2 text-[10px] xs:text-xs font-semibold uppercase tracking-[0.28em] text-[#1a2e22]/50 transition-colors duration-300 hover:text-[#c8601a]"
+              className="group flex items-center gap-2 text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-[#1a2e22]/50 transition-colors duration-300 hover:text-[#c8601a]"
             >
               Explore all destinations
-              <ArrowUpRight className="h-3.5 xs:h-4 w-3.5 xs:w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
+              <ArrowUpRight className="h-3 xs:h-3.5 sm:h-4 w-3 xs:w-3.5 sm:w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" strokeWidth={1.5} />
             </Link>
           </div>
         </ScrollReveal>
@@ -96,34 +96,34 @@ function CircularCard({ dest, meta }) {
       className="group flex flex-col items-center text-center"
     >
       {/* Circular Image */}
-      <div className="relative w-64 xs:w-72 sm:w-80 md:w-88 lg:w-96 xl:w-[28rem] aspect-square overflow-hidden rounded-full border-2 border-[#1a2e22]/10 group-hover:border-[#c8601a]/50 transition-all duration-300 shadow-lg group-hover:shadow-xl">
+      <div className="relative w-48 xs:w-56 sm:w-64 md:w-72 lg:w-80 xl:w-96 aspect-square overflow-hidden rounded-full border-2 border-[#1a2e22]/10 group-hover:border-[#c8601a]/50 transition-all duration-300 shadow-lg group-hover:shadow-xl">
         <OptimizedImage
           src={dest.image}
           alt={`${dest.name}, ${dest.country}`}
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           loading="lazy"
           isMobile={isMobile}
-          sizes="(min-width: 1024px) 28rem, (min-width: 768px) 20rem, 16rem"
-          width={512}
-          height={512}
+          sizes="(min-width: 1024px) 24rem, (min-width: 768px) 18rem, (min-width: 640px) 16rem, 12rem"
+          width={384}
+          height={384}
         />
         {/* Overlay on hover */}
         <div className="absolute inset-0 bg-[#c8601a]/0 group-hover:bg-[#c8601a]/20 transition-colors duration-300" />
       </div>
 
       {/* Destination Info */}
-      <div className="mt-3 xs:mt-4">
-        <h3 className="font-serif text-base xs:text-lg sm:text-xl font-light text-[#1a2e22] group-hover:text-[#c8601a] transition-colors duration-300">
+      <div className="mt-2.5 xs:mt-3 sm:mt-4">
+        <h3 className="font-serif text-sm xs:text-base sm:text-lg md:text-xl font-light text-[#1a2e22] group-hover:text-[#c8601a] transition-colors duration-300">
           {dest.name}
         </h3>
-        <p className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.18em] text-[#1a2e22]/40 mt-0.5">
+        <p className="text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.18em] text-[#1a2e22]/40 mt-0.5">
           {dest.country}
         </p>
-        <div className="mt-2 flex items-center justify-center gap-2">
-          <span className="text-[9px] xs:text-[10px] font-bold uppercase tracking-[0.2em] text-[#c8601a]">
+        <div className="mt-1.5 xs:mt-2 flex items-center justify-center gap-1.5 xs:gap-2">
+          <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.2em] text-[#c8601a]">
             {meta.index}
           </span>
-          <span className="text-[9px] xs:text-[10px] font-light text-[#1a2e22]/50">
+          <span className="text-[8px] xs:text-[9px] sm:text-[10px] font-light text-[#1a2e22]/50">
             {meta.season}
           </span>
         </div>
@@ -138,10 +138,10 @@ function MosaicImage({ dest, meta, size, isFeatured = false }) {
   
   const heightClass =
     size === 'large'
-      ? 'h-[14rem] xs:h-[16rem] sm:h-[18rem] md:h-[20rem] lg:h-[24rem] xl:h-[28rem]'
+      ? 'h-[12rem] xs:h-[14rem] sm:h-[16rem] md:h-[18rem] lg:h-[24rem] xl:h-[28rem]'
       : size === 'tall'
-      ? 'h-[18rem] xs:h-[22rem] sm:h-[26rem] md:h-[30rem] lg:h-[44rem] xl:h-[54rem]'
-      : 'h-[12rem] xs:h-[14rem] sm:h-[16rem] md:h-[18rem] lg:h-[20rem] xl:h-[22rem]';
+      ? 'h-[16rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem] lg:h-[44rem] xl:h-[54rem]'
+      : 'h-[10rem] xs:h-[12rem] sm:h-[14rem] md:h-[16rem] lg:h-[20rem] xl:h-[22rem]';
 
   // Use responsive srcset for better performance
   const sizes = size === 'large' ? generateSizes('featured') : generateSizes('card');

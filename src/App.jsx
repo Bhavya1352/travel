@@ -12,6 +12,12 @@ const Itinerary = lazy(() => import('./pages/Itinerary'));
 const Destinations = lazy(() => import('./pages/Destinations'));
 const DestinationDetails = lazy(() => import('./pages/DestinationDetails'));
 const MyTrips = lazy(() => import('./pages/MyTrips'));
+const About = lazy(() => import('./pages/About'));
+const Careers = lazy(() => import('./pages/Careers'));
+const Blog = lazy(() => import('./pages/Blog'));
+const Press = lazy(() => import('./pages/Press'));
+const Help = lazy(() => import('./pages/Help'));
+const FAQ = lazy(() => import('./pages/FAQ'));
 
 export default function App() {
   return (
@@ -56,6 +62,54 @@ export default function App() {
             element={
               <Suspense fallback={<Loader label="Loading your trips..." />}>
                 <MyTrips />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Suspense fallback={<Loader label="Loading about..." />}>
+                <About />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/careers"
+            element={
+              <Suspense fallback={<Loader label="Loading careers..." />}>
+                <Careers />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/blog"
+            element={
+              <Suspense fallback={<Loader label="Loading blog..." />}>
+                <Blog />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/press"
+            element={
+              <Suspense fallback={<Loader label="Loading press..." />}>
+                <Press />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/help"
+            element={
+              <Suspense fallback={<Loader label="Loading help..." />}>
+                <Help />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/faq"
+            element={
+              <Suspense fallback={<Loader label="Loading FAQ..." />}>
+                <FAQ />
               </Suspense>
             }
           />

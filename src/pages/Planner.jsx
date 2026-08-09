@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { MapPin, Calendar, Wallet, Users, Compass, Sparkles, Heart, ChevronDown, Check } from 'lucide-react';
+import { MapPin, Calendar, Wallet, Users, Compass, Sparkles, Heart, ChevronDown, Check, Search, Plane, Gem, Mountain, Camera, Sun, Flame } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import { useTripPlanner } from '../hooks/useTripPlanner';
 import { TRAVEL_STYLES, BUDGET_TIERS, INTERESTS, POPULAR_DESTINATIONS } from '../data/travelOptions';
@@ -59,25 +59,44 @@ export default function Planner() {
     <div className="min-h-screen bg-[#faf8f5]">
       <Navbar />
 
-      <div className="mx-auto max-w-4xl px-4 xs:px-5 sm:px-6 md:px-8 pb-16 xs:pb-18 sm:pb-20 pt-24 xs:pt-28 sm:pt-32 lg:pt-40 overflow-hidden">
+      <div className="mx-auto max-w-4xl px-3 xs:px-4 sm:px-5 md:px-6 pb-12 xs:pb-14 sm:pb-16 md:pb-18 lg:pb-20 pt-20 xs:pt-24 sm:pt-28 md:pt-32 lg:pt-40 overflow-hidden">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-12 text-center"
+          className="mb-12 xs:mb-14 sm:mb-16"
         >
-          <span className="text-xs font-medium uppercase tracking-[0.2em] text-[#c8601a]">
-            AI Trip Planner
-          </span>
-          <h1 className="mt-3 font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-light leading-tight text-[#1a2e22]">
-            Plan your journey,
-            <br />
-            <span className="italic">tailored to you.</span>
-          </h1>
-          <p className="mx-auto mt-3 xs:mt-4 max-w-xs xs:max-w-sm sm:max-w-md text-xs xs:text-sm sm:text-base font-light leading-relaxed text-[#1a2e22]/50">
-            Share your travel preferences and let AI craft a personalized day-by-day itinerary.
-          </p>
+          <div className="relative">
+            {/* Decorative line */}
+            <div className="absolute left-1/2 top-0 -translate-x-1/2 h-12 xs:h-14 sm:h-16 w-[1px] bg-gradient-to-b from-transparent via-[#C8601A]/30 to-transparent"></div>
+            
+            <div className="relative z-10 text-center">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-1.5 xs:gap-2 rounded-full border border-[#C8601A]/20 bg-[#C8601A]/5 px-3 xs:px-4 py-1.5 xs:py-2 mb-4 xs:mb-6">
+                <Sparkles className="h-3 xs:h-3.5 w-3 xs:w-3.5 text-[#C8601A]" strokeWidth={1.5} />
+                <span className="text-[9px] xs:text-[10px] font-medium uppercase tracking-[0.25em] text-[#C8601A]">
+                  AI Trip Planner
+                </span>
+              </div>
+              
+              {/* Main heading */}
+              <h1 className="font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light leading-tight text-[#1a2e22]">
+                Plan your journey,
+                <br />
+                <span className="italic text-[#C8601A]">tailored to you.</span>
+              </h1>
+              
+              {/* Subtitle with decorative elements */}
+              <div className="mt-4 xs:mt-6 flex items-center justify-center gap-3 xs:gap-4">
+                <div className="h-[1px] w-8 xs:w-12 bg-gradient-to-r from-transparent to-[#1a2e22]/20"></div>
+                <p className="max-w-[200px] xs:max-w-md text-xs xs:text-sm font-light leading-relaxed text-[#1a2e22]/50">
+                  Share your travel preferences and let AI craft a personalized day-by-day itinerary.
+                </p>
+                <div className="h-[1px] w-8 xs:w-12 bg-gradient-to-l from-transparent to-[#1a2e22]/20"></div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Form */}
@@ -85,21 +104,31 @@ export default function Planner() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="rounded-3xl border border-[#1a2e22]/10 bg-white p-4 xs:p-5 sm:p-6 md:p-8 lg:p-10 shadow-sm overflow-hidden"
+          className="relative rounded-[16px] xs:rounded-[20px] border border-[#1a2e22]/8 bg-[#FDFBF7] p-4 xs:p-5 sm:p-6 md:p-8 lg:p-10 shadow-[0_4px_24px_rgba(26,46,34,0.08),0_1px_3px_rgba(26,46,34,0.04)] overflow-hidden"
         >
+          {/* Decorative orange accent line */}
+          <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#C8601A] via-[#C8601A]/80 to-transparent"></div>
+          
+          {/* Tiny compass/travel mark */}
+          <div className="absolute top-3 xs:top-4 right-3 xs:right-4 opacity-20">
+            <Compass className="h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#C8601A]" strokeWidth={1.5} />
+          </div>
           {/* Destination */}
-          <FormField label="Where to?" icon={MapPin}>
+          <FormField label="01 — DESTINATION" icon={MapPin}>
             <div className="relative" ref={dropdownRef}>
-              <input
-                type="text"
-                value={plan.destination}
-                onChange={(e) => updateField('destination', e.target.value)}
-                onFocus={() => setDestinationFocused(true)}
-                placeholder="Search a destination..."
-                className="w-full rounded-xl border border-[#1a2e22]/10 bg-[#faf8f5] px-3 xs:px-4 py-2 xs:py-3 text-xs xs:text-sm font-light text-[#1a2e22] placeholder-[#1a2e22]/30 focus:border-[#c8601a] focus:outline-none"
-              />
+              <div className="relative">
+                <Search className="absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#1a2e22]/30" strokeWidth={1.5} />
+                <input
+                  type="text"
+                  value={plan.destination}
+                  onChange={(e) => updateField('destination', e.target.value)}
+                  onFocus={() => setDestinationFocused(true)}
+                  placeholder="Search a destination..."
+                  className="w-full rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#F7F4EE] pl-9 xs:pl-11 pr-3 xs:pr-4 py-2.5 xs:py-3.5 text-xs xs:text-sm font-light text-[#1a2e22] placeholder-[#1a2e22]/25 focus:border-[#C8601A] focus:outline-none focus:ring-1 focus:ring-[#C8601A]/20 transition-all duration-200"
+                />
+              </div>
               {destinationFocused && destinationResults.length > 0 && (
-                <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-xl border border-[#1a2e22]/10 bg-white shadow-lg">
+                <div className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#FDFBF7] shadow-[0_8px_32px_rgba(26,46,34,0.12)]">
                   {destinationResults.map((d) => (
                     <button
                       key={d.name}
@@ -108,12 +137,12 @@ export default function Planner() {
                         updateField('destination', d.name);
                         setDestinationFocused(false);
                       }}
-                      className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-[#faf8f5]"
+                      className="flex w-full items-center gap-2 xs:gap-3 px-3 xs:px-4 py-2 xs:py-3 text-left hover:bg-[#F7F4EE] transition-colors duration-150"
                     >
-                      <img src={d.image} alt="" className="h-10 w-14 rounded-lg object-cover" />
+                      <img src={d.image} alt="" className="h-8 xs:h-10 w-12 xs:w-14 rounded-lg object-cover" />
                       <div>
-                        <div className="text-sm font-light text-[#1a2e22]">{d.name}</div>
-                        <div className="text-xs text-[#1a2e22]/40">{d.country}</div>
+                        <div className="text-xs xs:text-sm font-light text-[#1a2e22]">{d.name}</div>
+                        <div className="text-[10px] xs:text-xs text-[#1a2e22]/40">{d.country}</div>
                       </div>
                     </button>
                   ))}
@@ -123,86 +152,137 @@ export default function Planner() {
           </FormField>
 
           {/* Dates */}
-          <div className="grid gap-4 xs:gap-5 sm:gap-6 sm:grid-cols-2">
-            <FormField label="Start Date" icon={Calendar}>
-              <input
-                type="date"
-                value={plan.startDate}
-                onChange={(e) => updateField('startDate', e.target.value)}
-                className="w-full rounded-xl border border-[#1a2e22]/10 bg-[#faf8f5] px-3 xs:px-4 py-2 xs:py-3 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#c8601a] focus:outline-none"
-              />
-            </FormField>
-            <FormField label="End Date" icon={Calendar}>
-              <input
-                type="date"
-                value={plan.endDate}
-                onChange={(e) => updateField('endDate', e.target.value)}
-                className="w-full rounded-xl border border-[#1a2e22]/10 bg-[#faf8f5] px-3 xs:px-4 py-2 xs:py-3 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#c8601a] focus:outline-none"
-              />
-            </FormField>
-          </div>
+          <FormField label="02 — WHEN" icon={Calendar}>
+            <div className="relative">
+              <div className="grid gap-3 xs:gap-4 sm:grid-cols-2">
+                <div className="relative">
+                  <Calendar className="absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#1a2e22]/30" strokeWidth={1.5} />
+                  <input
+                    type="date"
+                    value={plan.startDate}
+                    onChange={(e) => updateField('startDate', e.target.value)}
+                    className="w-full rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#F7F4EE] pl-9 xs:pl-11 pr-3 xs:pr-4 py-2.5 xs:py-3.5 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#C8601A] focus:outline-none focus:ring-1 focus:ring-[#C8601A]/20 transition-all duration-200"
+                  />
+                </div>
+                <div className="relative">
+                  <Calendar className="absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#1a2e22]/30" strokeWidth={1.5} />
+                  <input
+                    type="date"
+                    value={plan.endDate}
+                    onChange={(e) => updateField('endDate', e.target.value)}
+                    className="w-full rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#F7F4EE] pl-9 xs:pl-11 pr-3 xs:pr-4 py-2.5 xs:py-3.5 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#C8601A] focus:outline-none focus:ring-1 focus:ring-[#C8601A]/20 transition-all duration-200"
+                  />
+                </div>
+              </div>
+              {/* Subtle divider */}
+              <div className="hidden sm:block absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-6 xs:h-8 w-[1px] bg-[#1a2e22]/8"></div>
+            </div>
+          </FormField>
 
           {/* Budget & Travelers */}
-          <div className="grid gap-4 xs:gap-5 sm:gap-6 sm:grid-cols-2">
-            <FormField label="Budget" icon={Wallet}>
-              <select
-                value={plan.budget}
-                onChange={(e) => updateField('budget', e.target.value)}
-                className="w-full rounded-xl border border-[#1a2e22]/10 bg-[#faf8f5] px-3 xs:px-4 py-2 xs:py-3 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#c8601a] focus:outline-none"
-              >
-                {BUDGET_TIERS.map((b) => (
-                  <option key={b.id} value={b.id}>
-                    {b.label} — {b.range}
-                  </option>
-                ))}
-              </select>
-            </FormField>
-            <FormField label="Travelers" icon={Users}>
-              <div className="flex items-center gap-3 rounded-xl border border-[#1a2e22]/10 bg-[#faf8f5] px-4 py-3">
+          <FormField label="03 — BUDGET & TRAVELERS" icon={Wallet}>
+            <div className="grid gap-3 xs:gap-4 sm:gap-6 sm:grid-cols-2">
+              <div className="relative">
+                <Wallet className="absolute left-3 xs:left-4 top-1/2 -translate-y-1/2 h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#1a2e22]/30" strokeWidth={1.5} />
+                <select
+                  value={plan.budget}
+                  onChange={(e) => updateField('budget', e.target.value)}
+                  className="w-full appearance-none rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#F7F4EE] pl-9 xs:pl-11 pr-8 xs:pr-10 py-2.5 xs:py-3.5 text-xs xs:text-sm font-light text-[#1a2e22] focus:border-[#C8601A] focus:outline-none focus:ring-1 focus:ring-[#C8601A]/20 transition-all duration-200 cursor-pointer"
+                >
+                  {BUDGET_TIERS.map((b) => (
+                    <option key={b.id} value={b.id}>
+                      {b.label} — {b.range}
+                    </option>
+                  ))}
+                </select>
+                <ChevronDown className="absolute right-3 xs:right-4 top-1/2 -translate-y-1/2 h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#1a2e22]/30 pointer-events-none" strokeWidth={1.5} />
+              </div>
+              <div className="flex items-center gap-2 xs:gap-3 rounded-[10px] xs:rounded-[12px] border border-[#1a2e22]/8 bg-[#F7F4EE] px-3 xs:px-4 py-2.5 xs:py-3.5">
                 <button
                   onClick={() => updateField('travelers', Math.max(1, plan.travelers - 1))}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#1a2e22]/15 text-[#1a2e22] hover:bg-[#1a2e22]/5"
+                  className="flex h-7 xs:h-8 w-7 xs:w-8 items-center justify-center rounded-full border border-[#1a2e22]/12 text-[#1a2e22] hover:bg-[#1a2e22]/5 transition-colors duration-150"
                 >
                   −
                 </button>
-                <span className="flex-1 text-center text-sm font-light text-[#1a2e22]">
+                <span className="flex-1 text-center text-xs xs:text-sm font-light text-[#1a2e22]">
                   {plan.travelers} {plan.travelers === 1 ? 'traveler' : 'travelers'}
                 </span>
                 <button
                   onClick={() => updateField('travelers', Math.min(20, plan.travelers + 1))}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-[#1a2e22]/15 text-[#1a2e22] hover:bg-[#1a2e22]/5"
+                  className="flex h-7 xs:h-8 w-7 xs:w-8 items-center justify-center rounded-full border border-[#1a2e22]/12 text-[#1a2e22] hover:bg-[#1a2e22]/5 transition-colors duration-150"
                 >
                   +
                 </button>
               </div>
-            </FormField>
-          </div>
+            </div>
+          </FormField>
 
           {/* Travel Style */}
-          <FormField label="Travel Style" icon={Compass}>
-            <div className="grid grid-cols-1 xs:grid-cols-2 gap-2 xs:gap-3 sm:grid-cols-3">
-              {TRAVEL_STYLES.map((style) => (
-                <button
-                  key={style.id}
-                  onClick={() => updateField('travelStyle', style.id)}
-                  className={cn(
-                    'rounded-xl border px-3 xs:px-4 py-2 xs:py-3 text-left transition-all duration-200',
-                    plan.travelStyle === style.id
-                      ? 'border-[#c8601a] bg-[#c8601a]/5'
-                      : 'border-[#1a2e22]/10 bg-[#faf8f5] hover:border-[#1a2e22]/20'
-                  )}
-                >
-                  <div className="text-xs xs:text-sm font-medium text-[#1a2e22]">{style.label}</div>
-                  <div className="mt-0.5 text-[10px] xs:text-xs font-light text-[#1a2e22]/40 line-clamp-2">
-                    {style.description}
-                  </div>
-                </button>
-              ))}
+          <FormField label="04 — TRAVEL STYLE" icon={Compass}>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 xs:gap-3">
+              {TRAVEL_STYLES.map((style) => {
+                const isSelected = plan.travelStyle === style.id;
+                const iconMap = {
+                  luxury: Gem,
+                  adventure: Mountain,
+                  cultural: Camera,
+                  relaxed: Sun,
+                  family: Users,
+                  romantic: Flame,
+                };
+                const Icon = iconMap[style.id] || Compass;
+                
+                return (
+                  <button
+                    key={style.id}
+                    onClick={() => updateField('travelStyle', style.id)}
+                    className={cn(
+                      'relative group rounded-[10px] xs:rounded-[12px] border p-3 xs:p-4 text-left transition-all duration-300 hover:-translate-y-0.5',
+                      isSelected
+                        ? 'border-[#1A2E22] bg-[#1A2E22] shadow-md'
+                        : 'border-[#1a2e22]/8 bg-[#F7F4EE] hover:border-[#1a2e22]/15 hover:shadow-sm'
+                    )}
+                  >
+                    {/* Orange accent indicator when selected */}
+                    {isSelected && (
+                      <div className="absolute top-2 xs:top-3 right-2 xs:right-3">
+                        <div className="h-1.5 w-1.5 rounded-full bg-[#C8601A]"></div>
+                      </div>
+                    )}
+                    
+                    <div className="flex items-start gap-2 xs:gap-3">
+                      <div className={cn(
+                        'flex h-8 xs:h-9 w-8 xs:w-9 items-center justify-center rounded-lg transition-colors duration-200',
+                        isSelected ? 'bg-white/10' : 'bg-[#1a2e22]/5'
+                      )}>
+                        <Icon className={cn(
+                          'h-3.5 xs:h-4 w-3.5 xs:w-4',
+                          isSelected ? 'text-white' : 'text-[#1a2e22]/60'
+                        )} strokeWidth={1.5} />
+                      </div>
+                      <div className="flex-1">
+                        <div className={cn(
+                          'text-xs xs:text-sm font-medium leading-tight',
+                          isSelected ? 'text-white' : 'text-[#1a2e22]'
+                        )}>
+                          {style.label}
+                        </div>
+                        <div className={cn(
+                          'mt-0.5 xs:mt-1 text-[10px] xs:text-xs font-light leading-relaxed line-clamp-2',
+                          isSelected ? 'text-white/70' : 'text-[#1a2e22]/40'
+                        )}>
+                          {style.description}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </FormField>
 
           {/* Interests */}
-          <FormField label="Interests" icon={Heart}>
+          <FormField label="05 — INTERESTS" icon={Heart}>
             <div className="flex flex-wrap gap-1.5 xs:gap-2">
               {INTERESTS.map((interest) => {
                 const selected = plan.interests.includes(interest);
@@ -211,13 +291,13 @@ export default function Planner() {
                     key={interest}
                     onClick={() => toggleInterest(interest)}
                     className={cn(
-                      'flex items-center gap-1 xs:gap-1.5 rounded-full border px-2.5 xs:px-3 sm:px-4 py-1.5 xs:py-2 text-[11px] xs:text-xs sm:text-sm font-light transition-all duration-200',
+                      'flex items-center gap-1.5 xs:gap-2 rounded-full border px-2.5 xs:px-3.5 sm:px-4 py-1.5 xs:py-2 text-[10px] xs:text-xs font-light transition-all duration-200 hover:scale-105',
                       selected
-                        ? 'border-[#c8601a] bg-[#c8601a]/5 text-[#c8601a]'
-                        : 'border-[#1a2e22]/10 bg-[#faf8f5] text-[#1a2e22]/60 hover:border-[#1a2e22]/20'
+                        ? 'border-[#1A2E22] bg-[#1A2E22] text-white shadow-sm'
+                        : 'border-[#1a2e22]/8 bg-[#F7F4EE] text-[#1a2e22]/60 hover:border-[#1a2e22]/15'
                     )}
                   >
-                    {selected && <Check className="h-3 w-3" strokeWidth={2} />}
+                    {selected && <Check className="h-2.5 xs:h-3 w-2.5 xs:w-3" strokeWidth={2} />}
                     {interest}
                   </button>
                 );
@@ -229,14 +309,17 @@ export default function Planner() {
           <button
             onClick={handleSubmit}
             disabled={!isFormValid}
-            className="group mt-6 xs:mt-8 flex w-full items-center justify-center gap-1.5 xs:gap-2 rounded-2xl bg-[#c8601a] px-6 xs:px-8 py-3 xs:py-4 text-xs xs:text-sm font-medium tracking-wide text-white transition-all duration-300 hover:bg-[#e07a35] hover:shadow-lg hover:shadow-[#c8601a]/30 disabled:cursor-not-allowed disabled:opacity-50"
+            className="group mt-6 xs:mt-8 flex w-full items-center justify-center gap-1.5 xs:gap-2 rounded-[10px] xs:rounded-[12px] bg-gradient-to-br from-[#1A2E22] to-[#15231A] px-6 xs:px-8 py-3 xs:py-4 text-xs xs:text-sm font-medium tracking-wide text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-[#1A2E22]/25 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
           >
-            <Sparkles className="h-4 w-4" strokeWidth={1.5} />
+            <div className="relative">
+              <Sparkles className="h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#C8601A]" strokeWidth={1.5} />
+              <div className="absolute inset-0 animate-pulse rounded-full bg-[#C8601A]/20 blur-sm"></div>
+            </div>
             Generate my itinerary
           </button>
           {!isFormValid && (
-            <p className="mt-2 xs:mt-3 text-center text-[10px] xs:text-xs font-light text-[#1a2e22]/30">
-              Fill in destination and dates to continue
+            <p className="mt-2 xs:mt-3 text-center text-[10px] xs:text-xs font-light text-[#1a2e22]/40">
+              Tell us where you're going and when — we'll design the rest.
             </p>
           )}
         </motion.div>
@@ -247,9 +330,9 @@ export default function Planner() {
 
 function FormField({ label, icon: Icon, children }) {
   return (
-    <div className="mb-6">
-      <div className="mb-1.5 xs:mb-2 flex items-center gap-1 xs:gap-1.5 text-[10px] xs:text-xs font-medium uppercase tracking-widest text-[#1a2e22]/40">
-        <Icon className="h-2.5 xs:h-3 w-2.5 xs:w-3" strokeWidth={1.5} />
+    <div className="mb-6 xs:mb-8">
+      <div className="mb-2 xs:mb-3 flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] font-medium uppercase tracking-[0.2em] text-[#1a2e22]/35">
+        <Icon className="h-3 w-3" strokeWidth={1.5} />
         {label}
       </div>
       {children}

@@ -281,26 +281,26 @@ export default function Itinerary() {
             key="loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-start pt-[20vh] bg-[#1a2e22] text-white px-6"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-start pt-[15vh] xs:pt-[20vh] bg-[#1a2e22] text-white px-4 xs:px-6"
           >
             <div className="w-full max-w-md">
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 2, repeat: Infinity, ease: 'linear' }}
-                className="mx-auto mb-8 flex h-16 w-16 items-center justify-center rounded-full border border-white/10"
+                className="mx-auto mb-6 xs:mb-8 flex h-12 xs:h-14 sm:h-16 w-12 xs:w-14 sm:w-16 items-center justify-center rounded-full border border-white/10"
               >
-                <Sparkles className="h-6 w-6 text-[#c8601a]" />
+                <Sparkles className="h-5 xs:h-6 w-5 xs:w-6 text-[#c8601a]" />
               </motion.div>
 
-              <h2 className="text-center font-serif text-3xl font-light tracking-wide text-white">
+              <h2 className="text-center font-serif text-2xl xs:text-3xl font-light tracking-wide text-white">
                 Designing your journey
               </h2>
-              <p className="text-center text-xs uppercase tracking-widest text-[#c8601a] mt-2">
+              <p className="text-center text-[10px] xs:text-xs uppercase tracking-widest text-[#c8601a] mt-1.5 xs:mt-2">
                 to {destination}
               </p>
 
               {/* Progress Steps list */}
-              <div className="mt-12 flex flex-col gap-4">
+              <div className="mt-8 xs:mt-12 flex flex-col gap-3 xs:gap-4">
                 {[
                   'Analyzing travel dates and seasons...',
                   'Optimizing daily budget & pacing parameters...',
@@ -312,25 +312,25 @@ export default function Itinerary() {
                     <div
                       key={idx}
                       className={cn(
-                        'flex items-center gap-3 transition-opacity duration-500',
+                        'flex items-center gap-2 xs:gap-3 transition-opacity duration-500',
                         state === 'pending' ? 'opacity-25' : 'opacity-100'
                       )}
                     >
-                      <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white/20">
+                      <div className="flex h-4 xs:h-5 w-4 xs:w-5 shrink-0 items-center justify-center rounded-full border border-white/20">
                         {state === 'done' ? (
-                          <Check className="h-3 w-3 text-emerald-400" />
+                          <Check className="h-2.5 xs:h-3 w-2.5 xs:w-3 text-emerald-400" />
                         ) : state === 'loading' ? (
                           <div className="h-1.5 w-1.5 rounded-full bg-[#c8601a] animate-ping" />
                         ) : null}
                       </div>
-                      <span className="text-sm font-light text-white/80">{step}</span>
+                      <span className="text-[11px] xs:text-sm font-light text-white/80">{step}</span>
                     </div>
                   );
                 })}
               </div>
 
               {/* Progress bar */}
-              <div className="mt-10 h-1 w-full rounded-full bg-white/10 overflow-hidden">
+              <div className="mt-6 xs:mt-10 h-1 w-full rounded-full bg-white/10 overflow-hidden">
                 <motion.div
                   className="h-full bg-[#c8601a]"
                   initial={{ width: '0%' }}
@@ -346,15 +346,15 @@ export default function Itinerary() {
             key="dashboard"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mx-auto max-w-7xl px-4 xs:px-5 sm:px-6 md:px-8 lg:px-10 pb-16 xs:pb-20 sm:pb-24 pt-24 xs:pt-28 sm:pt-32 lg:pt-40 overflow-hidden"
+            className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 pb-12 xs:pb-16 sm:pb-20 md:pb-24 pt-20 xs:pt-24 sm:pt-28 md:pt-32 lg:pt-40 overflow-hidden"
           >
             {/* Error Display */}
             {itineraryError && (
-              <div className="mb-8 rounded-2xl border border-red-200 bg-red-50 p-6 text-center">
-                <p className="text-sm font-medium text-red-800">{itineraryError}</p>
+              <div className="mb-6 xs:mb-8 rounded-xl xs:rounded-2xl border border-red-200 bg-red-50 p-4 xs:p-6 text-center">
+                <p className="text-xs xs:text-sm font-medium text-red-800">{itineraryError}</p>
                 <Link
                   to="/planner"
-                  className="mt-4 inline-block text-sm font-semibold text-red-600 hover:text-red-800"
+                  className="mt-3 xs:mt-4 inline-block text-xs xs:text-sm font-semibold text-red-600 hover:text-red-800"
                 >
                   ← Back to Planner
                 </Link>
@@ -364,41 +364,41 @@ export default function Itinerary() {
             {/* Back action */}
             <Link
               to="/planner"
-              className="group mb-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] text-[#1a2e22]/50 transition-colors hover:text-[#1a2e22]"
+              className="group mb-6 xs:mb-8 inline-flex items-center gap-1.5 xs:gap-2 text-[11px] xs:text-sm font-semibold uppercase tracking-[0.12em] text-[#1a2e22]/50 transition-colors hover:text-[#1a2e22]"
             >
-              <ArrowLeft className="h-4 w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
+              <ArrowLeft className="h-3.5 xs:h-4 w-3.5 xs:w-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
               Configure Preferences
             </Link>
 
             {/* Dashboard Header */}
-            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between border-b border-[#1a2e22]/15 pb-8 mb-12">
+            <div className="flex flex-col gap-4 xs:gap-6 lg:flex-row lg:items-start lg:justify-between border-b border-[#1a2e22]/15 pb-6 xs:pb-8 mb-8 xs:mb-12">
               <div>
-                <span className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8601a] flex items-center gap-1.5">
-                  <Sparkles className="h-4 w-4" />
+                <span className="text-[10px] xs:text-xs font-semibold uppercase tracking-[0.25em] text-[#c8601a] flex items-center gap-1 xs:gap-1.5">
+                  <Sparkles className="h-3.5 xs:h-4 w-3.5 xs:w-4" />
                   Intelligently generated itinerary
                 </span>
                 {/* Real vs Mock badge */}
                 {isAiGenerated !== null && (
                   <span className={cn(
-                    'mt-2 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-widest',
+                    'mt-1.5 xs:mt-2 inline-flex items-center gap-1 xs:gap-1.5 rounded-full px-2 xs:px-3 py-0.5 xs:py-1 text-[9px] xs:text-[10px] font-bold uppercase tracking-widest',
                     isAiGenerated
                       ? 'bg-emerald-100 text-emerald-700 border border-emerald-300'
                       : 'bg-amber-100 text-amber-700 border border-amber-300'
                   )}>
-                    <span className={cn('h-2 w-2 rounded-full', isAiGenerated ? 'bg-emerald-500' : 'bg-amber-500')} />
+                    <span className={cn('h-1.5 xs:h-2 w-1.5 xs:w-2 rounded-full', isAiGenerated ? 'bg-emerald-500' : 'bg-amber-500')} />
                     {isAiGenerated ? '✅ Real AI Data (Gemini)' : '⚠️ Mock / Demo Data — Add API Key for real results'}
                   </span>
                 )}
-                <h1 className="mt-3 font-serif text-3xl xs:text-4xl sm:text-5xl lg:text-6xl font-light text-[#1a2e22]">
+                <h1 className="mt-2 xs:mt-3 font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-[#1a2e22]">
                   {destinationName}
                 </h1>
-                <p className="mt-3 xs:mt-4 max-w-xs xs:max-w-sm sm:max-w-md lg:max-w-xl text-xs xs:text-sm sm:text-base font-light leading-relaxed text-[#1a2e22]/60">
+                <p className="mt-2 xs:mt-3 sm:mt-4 max-w-[200px] xs:max-w-xs sm:max-w-md md:max-w-xl text-[10px] xs:text-xs sm:text-sm md:text-base font-light leading-relaxed text-[#1a2e22]/60">
                   A personalized {daysPlan.length}-day flow optimized for a {travelStyle} style,
                   spending around your budget tier.
                 </p>
 
                 {/* Metadata badges */}
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-4 xs:mt-6 flex flex-wrap gap-2 xs:gap-3">
                   <MetaBadge icon={Calendar} text={`${daysPlan.length} Days`} />
                   <MetaBadge icon={Users} text={`${travelers} Guests`} />
                   <MetaBadge icon={Wallet} text={`Est. Total €${totalCost}`} />
@@ -407,36 +407,36 @@ export default function Itinerary() {
               </div>
 
               {/* Actions panel */}
-              <div className="flex flex-wrap gap-3 self-end">
+              <div className="flex flex-wrap gap-2 xs:gap-3 self-end">
                 <button
                   onClick={handleSaveToggle}
                   className={cn(
-                    'flex items-center gap-2 rounded-full px-5 py-2.5 text-xs font-semibold uppercase tracking-wider transition-all duration-300',
+                    'flex items-center gap-1.5 xs:gap-2 rounded-full px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2.5 text-[10px] xs:text-xs font-semibold uppercase tracking-wider transition-all duration-300',
                     isSaved
                       ? 'bg-[#1a2e22] text-white shadow-lg'
                       : 'border border-[#1a2e22]/20 text-[#1a2e22] hover:bg-[#1a2e22]/5'
                   )}
                 >
-                  <Heart className={cn('h-4 w-4', isSaved && 'fill-white')} />
+                  <Heart className={cn('h-3.5 xs:h-4 w-3.5 xs:w-4', isSaved && 'fill-white')} />
                   {isSaved ? 'Saved to trips' : 'Save itinerary'}
                 </button>
-                <button className="flex items-center gap-2 rounded-full border border-[#1a2e22]/20 px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-[#1a2e22] hover:bg-[#1a2e22]/5">
-                  <Share2 className="h-4 w-4" />
+                <button className="flex items-center gap-1.5 xs:gap-2 rounded-full border border-[#1a2e22]/20 px-3 xs:px-4 sm:px-5 py-1.5 xs:py-2.5 text-[10px] xs:text-xs font-semibold uppercase tracking-wider text-[#1a2e22] hover:bg-[#1a2e22]/5">
+                  <Share2 className="h-3.5 xs:h-4 w-3.5 xs:w-4" />
                   Share link
                 </button>
               </div>
             </div>
 
             {/* Main Interactive Grid */}
-            <div className="grid gap-4 xs:gap-6 sm:gap-8 lg:grid-cols-[280px_1fr_340px]">
+            <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[280px_1fr_340px]">
 
               {/* LEFT COLUMN: Days Navigation & AI Refine panel */}
-              <div className="flex flex-col gap-8">
+              <div className="flex flex-col gap-6 xs:gap-8">
                 <div>
-                  <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#1a2e22]/40">
+                  <h3 className="mb-3 xs:mb-4 text-[10px] xs:text-xs font-bold uppercase tracking-[0.2em] text-[#1a2e22]/40">
                     Day selector
                   </h3>
-                  <div className="flex flex-row gap-2 overflow-x-auto pb-1 xs:pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
+                  <div className="flex flex-row gap-1.5 xs:gap-2 overflow-x-auto pb-1 xs:pb-2 lg:flex-col lg:overflow-visible lg:pb-0">
                     {daysPlan.filter(day => day && day.day && typeof day.day === 'number').map((day) => {
                       const active = day.day === activeDay;
                       return (
@@ -444,20 +444,20 @@ export default function Itinerary() {
                           key={day.day}
                           onClick={() => handleDayChange(day.day)}
                           className={cn(
-                            'group flex min-w-[7rem] xs:min-w-[8rem] sm:min-w-[9rem] flex-col gap-1 xs:gap-1.5 border-b-2 pb-3 xs:pb-4 text-left transition-all duration-300 lg:min-w-0 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
+                            'group flex min-w-[5.5rem] xs:min-w-[6rem] sm:min-w-[7rem] md:min-w-[8rem] flex-col gap-1 xs:gap-1.5 border-b-2 pb-2 xs:pb-3 sm:pb-4 text-left transition-all duration-300 lg:min-w-0 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
                             active
                               ? 'border-[#c8601a] text-[#1a2e22]'
                               : 'border-[#1a2e22]/10 text-[#1a2e22]/40 hover:border-[#1a2e22]/30'
                           )}
                         >
                           <span className={cn(
-                            'text-[9px] xs:text-[10px] font-bold uppercase tracking-wider',
+                            'text-[8px] xs:text-[9px] sm:text-[10px] font-bold uppercase tracking-wider',
                             active ? 'text-[#c8601a]' : 'text-[#1a2e22]/30'
                           )}>
                             Day 0{day.day}
                           </span>
-                          <span className="text-xs xs:text-sm font-semibold leading-tight line-clamp-2">{day.title || 'Day activities'}</span>
-                          <span className="text-[10px] xs:text-xs opacity-50">€{day.budget || 0} · {weatherData.temp}°</span>
+                          <span className="text-[10px] xs:text-xs sm:text-sm font-semibold leading-tight line-clamp-2">{day.title || 'Day activities'}</span>
+                          <span className="text-[9px] xs:text-[10px] sm:text-xs opacity-50">€{day.budget || 0} · {weatherData.temp}°</span>
                         </button>
                       );
                     })}
@@ -465,25 +465,25 @@ export default function Itinerary() {
                 </div>
 
                 {/* AI Refinement widget */}
-                <div className="border-t border-[#1a2e22]/15 pt-6">
-                  <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-[#c8601a] flex items-center gap-1.5">
-                    <Sparkles className="h-3.5 w-3.5" />
+                <div className="border-t border-[#1a2e22]/15 pt-4 xs:pt-6">
+                  <h3 className="mb-3 xs:mb-4 text-[10px] xs:text-xs font-bold uppercase tracking-[0.2em] text-[#c8601a] flex items-center gap-1 xs:gap-1.5">
+                    <Sparkles className="h-3 xs:h-3.5 w-3 xs:w-3.5" />
                     ✦ Refine with AI
                   </h3>
-                  <div className="flex flex-col gap-2">
+                  <div className="flex flex-col gap-1.5 xs:gap-2">
                     {AI_REFINEMENTS.map((ref) => (
                       <button
                         key={ref.id}
                         onClick={() => handleRefine(ref.id)}
                         disabled={isRefining}
                         className={cn(
-                          'flex items-center gap-2 rounded-xl border px-3.5 py-3 text-left text-xs font-medium transition-all duration-300',
+                          'flex items-center gap-1.5 xs:gap-2 rounded-xl border px-2.5 xs:px-3.5 py-2 xs:py-3 text-left text-[10px] xs:text-xs font-medium transition-all duration-300',
                           activeRefinement === ref.id && !isRefining
                             ? 'border-[#c8601a] bg-[#c8601a]/10 text-[#c8601a] shadow-sm'
                             : 'border-[#1a2e22]/15 bg-white text-[#1a2e22]/60 hover:border-[#c8601a]/30 hover:bg-[#faf8f5]'
                         )}
                       >
-                        <span className="text-sm">{ref.icon}</span>
+                        <span className="text-xs xs:text-sm">{ref.icon}</span>
                         <span className="leading-tight">{ref.label}</span>
                       </button>
                     ))}
@@ -494,8 +494,8 @@ export default function Itinerary() {
               {/* CENTER COLUMN: Itinerary flow details */}
               <div className="relative">
                 {!selectedDay ? (
-                  <div className="rounded-2xl border border-[#1a2e22]/10 bg-white p-8 text-center">
-                    <p className="text-sm text-[#1a2e22]/60">Loading itinerary details...</p>
+                  <div className="rounded-xl xs:rounded-2xl border border-[#1a2e22]/10 bg-white p-4 xs:p-6 sm:p-8 text-center">
+                    <p className="text-[10px] xs:text-sm text-[#1a2e22]/60">Loading itinerary details...</p>
                   </div>
                 ) : (
                   <AnimatePresence mode="wait">

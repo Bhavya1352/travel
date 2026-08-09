@@ -161,22 +161,22 @@ export default function TripUnfolding() {
   };
 
   return (
-    <section id="trip-planner" className="bg-[#1a2e22] py-16 xs:py-20 sm:py-24 lg:py-40 overflow-hidden">
+    <section id="trip-planner" className="bg-[#1a2e22] py-10 xs:py-16 sm:py-20 md:py-24 lg:py-40 overflow-hidden">
       <div className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10">
 
         {/* Section header */}
-        <div className="mb-10 xs:mb-12 sm:mb-14 lg:mb-16 flex flex-col gap-2 xs:gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div className="mb-8 xs:mb-10 sm:mb-12 md:mb-14 lg:mb-16 flex flex-col gap-2 xs:gap-3 sm:gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <p className="mb-2 xs:mb-3 text-[9px] xs:text-[10px] sm:text-[11px] font-medium uppercase tracking-[0.28em] text-[#c8601a]">
+            <p className="mb-1.5 xs:mb-2 sm:mb-3 text-[8px] xs:text-[9px] sm:text-[10px] md:text-[11px] font-medium uppercase tracking-[0.28em] text-[#c8601a]">
               Product Preview
             </p>
-            <h2 className="font-serif text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-light leading-[1.1] text-white">
+            <h2 className="font-serif text-xl xs:text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light leading-[1.1] text-white">
               A trip,
               <br />
               <em className="text-white/70">unfolding.</em>
             </h2>
           </div>
-          <p className="max-w-[200px] xs:max-w-xs sm:max-w-sm text-[10px] xs:text-xs sm:text-sm font-light leading-relaxed text-white/40 lg:text-right">
+          <p className="max-w-[180px] xs:max-w-[200px] sm:max-w-xs md:max-w-sm text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-light leading-relaxed text-white/40 lg:text-right">
             A live look at how Voyara turns a simple prompt into a day-by-day plan — with weather,
             budget, map context, and AI refinements built in.
           </p>
@@ -186,7 +186,7 @@ export default function TripUnfolding() {
           <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[250px_minmax(0,1.8fr)_320px]">
 
             {/* ─── LEFT: Day navigation ─── */}
-            <aside className="flex flex-row gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
+            <aside className="flex flex-row gap-1.5 xs:gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
               {DAYS.map((day) => {
                 const active = day.day === activeDay;
                 return (
@@ -194,24 +194,24 @@ export default function TripUnfolding() {
                     key={day.day}
                     onClick={() => handleDayChange(day.day)}
                     className={cn(
-                      'group flex min-w-[7rem] xs:min-w-[8rem] sm:min-w-[9.5rem] flex-col gap-1 xs:gap-1.5 sm:gap-2 border-b-2 pb-2 xs:pb-3 sm:pb-4 text-left transition-all duration-300 lg:min-w-0 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
+                      'group flex min-w-[5.5rem] xs:min-w-[6rem] sm:min-w-[7rem] md:min-w-[8rem] lg:min-w-0 flex-col gap-1 xs:gap-1.5 sm:gap-2 border-b-2 pb-1.5 xs:pb-2 sm:pb-3 md:pb-4 text-left transition-all duration-300 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
                       active
                         ? 'border-[#c8601a] text-white'
                         : 'border-white/10 text-white/35 hover:border-white/25 hover:text-white/60'
                     )}
                   >
                     <span className={cn(
-                      'text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.28em] transition-colors',
+                      'text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-[0.28em] transition-colors',
                       active ? 'text-[#c8601a]' : 'text-white/30'
                     )}>
                       {day.label}
                     </span>
-                    <span className="text-[12px] xs:text-[13px] sm:text-[15px] font-medium leading-tight line-clamp-2">{day.title}</span>
+                    <span className="text-[10px] xs:text-[11px] sm:text-[12px] md:text-[13px] font-medium leading-tight line-clamp-2">{day.title}</span>
                     <span className={cn(
-                      'flex items-center gap-1 xs:gap-1.5 text-[9px] xs:text-[10px] sm:text-xs transition-colors',
+                      'flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs transition-colors',
                       active ? 'text-white/50' : 'text-white/25'
                     )}>
-                      <Clock3 className="h-2.5 xs:h-3 sm:h-3.5 w-2.5 xs:w-3 sm:w-3.5" strokeWidth={1.5} />
+                      <Clock3 className="h-2 xs:h-2.5 sm:h-3 md:h-3.5 w-2 xs:w-2.5 sm:w-3 md:w-3.5" strokeWidth={1.5} />
                       3-part plan
                     </span>
                   </button>
@@ -219,26 +219,26 @@ export default function TripUnfolding() {
               })}
 
               {/* AI Refine chips — inside the left sidebar */}
-              <div className="mt-8 hidden lg:block">
-                <div className="mb-4 flex items-center gap-2 border-b border-[#c8601a]/25 pb-3 text-xs font-bold uppercase tracking-[0.24em] text-white">
-                  <Sparkles className="h-4 w-4 text-[#c8601a]" strokeWidth={2} />
+              <div className="mt-6 xs:mt-8 hidden lg:block">
+                <div className="mb-3 xs:mb-4 flex items-center gap-1.5 xs:gap-2 border-b border-[#c8601a]/25 pb-2 xs:pb-3 text-[10px] xs:text-xs font-bold uppercase tracking-[0.24em] text-white">
+                  <Sparkles className="h-3.5 xs:h-4 w-3.5 xs:w-4 text-[#c8601a]" strokeWidth={2} />
                   ✦ Refine with AI
                 </div>
-                <div className="flex flex-col gap-2.5">
+                <div className="flex flex-col gap-2 xs:gap-2.5">
                   {AI_CHIPS.map((chip) => (
                     <button
                       key={chip.id}
                       onClick={() => handleChip(chip)}
                       disabled={isRefining}
                       className={cn(
-                        'flex items-center gap-2.5 rounded-xl border px-3.5 py-3 text-left text-[13px] font-medium transition-all duration-300',
+                        'flex items-center gap-2 xs:gap-2.5 rounded-xl border px-2.5 xs:px-3.5 py-2 xs:py-3 text-left text-[11px] xs:text-[13px] font-medium transition-all duration-300',
                         activeChip === chip.id && !isRefining
                           ? 'border-[#c8601a] bg-[#c8601a]/15 text-white shadow-lg shadow-[#c8601a]/10'
                           : 'border-white/10 bg-white/5 text-white/60 hover:border-white/25 hover:bg-white/10 hover:text-white',
                         isRefining && activeChip !== chip.id ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'
                       )}
                     >
-                      <span className="text-lg leading-none">{chip.icon}</span>
+                      <span className="text-base xs:text-lg leading-none">{chip.icon}</span>
                       <span className="leading-tight">{chip.label}</span>
                     </button>
                   ))}
@@ -255,10 +255,10 @@ export default function TripUnfolding() {
                 exit={{ opacity: 0, y: -16 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                 className="relative overflow-hidden rounded-2xl"
-                style={{ minHeight: '24rem xs:min-h-[28rem] sm:min-h-[32rem] lg:min-h-[38rem]' }}
+                style={{ minHeight: '18rem xs:min-h-[22rem] sm:min-h-[26rem] md:min-h-[30rem] lg:min-h-[38rem]' }}
               >
                 {/* Hero image */}
-                <figure className="relative h-[16rem] xs:h-[20rem] sm:h-[24rem] lg:h-[32rem] xl:h-[42rem] overflow-hidden">
+                <figure className="relative h-[12rem] xs:h-[16rem] sm:h-[20rem] md:h-[24rem] lg:h-[32rem] xl:h-[42rem] overflow-hidden">
                   <OptimizedImage
                     key={selected.image}
                     src={selected.image}
@@ -276,18 +276,18 @@ export default function TripUnfolding() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1c1c1e]/90 via-[#1c1c1e]/20 to-transparent" />
 
                   {/* Top labels */}
-                  <div className="absolute left-3 xs:left-4 sm:left-5 right-3 xs:right-4 sm:right-5 top-3 xs:top-4 sm:top-5 flex items-start justify-between gap-2 xs:gap-3 sm:gap-4 text-white">
+                  <div className="absolute left-2 xs:left-3 sm:left-4 md:left-5 right-2 xs:right-3 sm:right-4 md:right-5 top-2 xs:top-3 sm:top-4 md:top-5 flex items-start justify-between gap-1.5 xs:gap-2 sm:gap-3 md:gap-4 text-white">
                     <div className="min-w-0 flex-1">
-                      <div className="flex items-center gap-1 xs:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.24em] text-white/50">
-                        <MapPin className="h-2 xs:h-2.5 sm:h-3 w-2 xs:w-2.5 sm:w-3 text-[#c8601a]" strokeWidth={1.5} />
+                      <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] font-medium uppercase tracking-[0.24em] text-white/50">
+                        <MapPin className="h-1.5 xs:h-2 sm:h-2.5 md:h-3 w-1.5 xs:w-2 sm:w-2.5 md:w-3 text-[#c8601a]" strokeWidth={1.5} />
                         <span className="truncate">{displayData.location}</span>
                       </div>
-                      <h3 className="mt-1 xs:mt-1.5 font-serif text-lg xs:text-xl sm:text-2xl lg:text-3xl font-light leading-tight">
+                      <h3 className="mt-0.5 xs:mt-1 sm:mt-1.5 font-serif text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl font-light leading-tight">
                         {destination.name}, {selected.label.toLowerCase()}
                       </h3>
-                      <p className="mt-0.5 xs:mt-1 text-[10px] xs:text-xs sm:text-sm font-light text-white/50 line-clamp-2">{displayData.subtitle}</p>
+                      <p className="mt-0.5 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-light text-white/50 line-clamp-2">{displayData.subtitle}</p>
                     </div>
-                    <span className="hidden shrink-0 rounded-full border border-white/15 bg-white/10 px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 text-[8px] xs:text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm sm:inline-flex">
+                    <span className="hidden shrink-0 rounded-full border border-white/15 bg-white/10 px-1 xs:px-1.5 sm:px-2 md:px-3 py-0.5 xs:py-1 text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.18em] text-white/60 backdrop-blur-sm sm:inline-flex">
                       AI preview
                     </span>
                   </div>
@@ -318,8 +318,8 @@ export default function TripUnfolding() {
                   </AnimatePresence>
 
                   {/* Bottom: activity timeline */}
-                  <div className="absolute bottom-0 left-0 right-0 p-3 xs:p-4 sm:p-5 lg:p-6">
-                    <div className="grid gap-1.5 xs:gap-2 sm:gap-3 sm:grid-cols-3">
+                  <div className="absolute bottom-0 left-0 right-0 p-2 xs:p-3 sm:p-4 md:p-5 lg:p-6">
+                    <div className="grid gap-1 xs:gap-1.5 sm:gap-2 md:gap-3 sm:grid-cols-3">
                       <ActivitySlot icon={SunMedium} label="Morning" text={displayData.morning} refined={!!refinedData && activeChip} />
                       <ActivitySlot icon={TreePine} label="Afternoon" text={displayData.afternoon} refined={!!refinedData && activeChip} />
                       <ActivitySlot icon={UtensilsCrossed} label="Evening" text={displayData.evening} refined={!!refinedData && activeChip} />
@@ -343,24 +343,24 @@ export default function TripUnfolding() {
                 </AnimatePresence>
 
                 {/* Mobile AI chips */}
-                <div className="border-t border-white/10 bg-[#1a2e22] p-2 xs:p-3 sm:p-4 lg:hidden">
-                  <div className="mb-1.5 xs:mb-2 sm:mb-3 text-[8px] xs:text-[9px] sm:text-[10px] font-medium uppercase tracking-[0.24em] text-white/25">
+                <div className="border-t border-white/10 bg-[#1a2e22] p-1.5 xs:p-2 sm:p-3 md:p-4 lg:hidden">
+                  <div className="mb-1 xs:mb-1.5 sm:mb-2 md:mb-3 text-[7px] xs:text-[8px] sm:text-[9px] md:text-[10px] font-medium uppercase tracking-[0.24em] text-white/25">
                     Refine with AI
                   </div>
-                  <div className="flex flex-wrap gap-1 xs:gap-1.5 sm:gap-2">
+                  <div className="flex flex-wrap gap-0.5 xs:gap-1 sm:gap-1.5 md:gap-2">
                     {AI_CHIPS.map((chip) => (
                       <button
                         key={chip.id}
                         onClick={() => handleChip(chip)}
                         disabled={isRefining}
                         className={cn(
-                          'flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 rounded-full border px-1.5 xs:px-2 sm:px-3 py-0.5 xs:py-1 sm:py-1.5 text-[9px] xs:text-[10px] sm:text-xs font-light transition-all duration-300',
+                          'flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 rounded-full border px-1 xs:px-1.5 sm:px-2 md:px-3 py-0.5 xs:py-1 sm:py-1.5 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-light transition-all duration-300',
                           activeChip === chip.id && !isRefining
                             ? 'border-[#c8601a]/40 bg-[#c8601a]/10 text-white'
                             : 'border-white/10 bg-white/5 text-white/45 hover:border-white/20'
                         )}
                       >
-                        <span className="text-xs">{chip.icon}</span>
+                        <span className="text-[10px] xs:text-xs">{chip.icon}</span>
                         <span className="truncate">{chip.label}</span>
                       </button>
                     ))}
@@ -407,8 +407,8 @@ export default function TripUnfolding() {
                   Map preview
                 </div>
                 <div className="text-xl font-serif font-light text-white">{displayData.location}</div>
-                <div className="mt-1 text-xs uppercase tracking-[0.18em] text-white/30">{destination.region}</div>
-                <div className="relative mt-4 h-48 overflow-hidden rounded-xl border border-white/10 bg-[#1a2e22]">
+                <div className="mt-1 text-[10px] xs:text-xs uppercase tracking-[0.18em] text-white/30">{destination.region}</div>
+                <div className="relative mt-3 xs:mt-4 h-36 xs:h-40 sm:h-48 overflow-hidden rounded-xl border border-white/10 bg-[#1a2e22]">
                   {/* Static map placeholder image - much faster than iframe */}
                   <OptimizedImage
                     src={`https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg`}
@@ -423,9 +423,9 @@ export default function TripUnfolding() {
                   {/* Map overlay label */}
                   <div className="absolute inset-0 flex items-center justify-center bg-[#1a2e22]/40 backdrop-blur-[2px]">
                     <div className="text-center">
-                      <MapPin className="mx-auto h-6 w-6 text-[#c8601a] mb-2" strokeWidth={1.5} />
-                      <p className="text-sm font-medium text-white">{destination.name}</p>
-                      <p className="text-xs text-white/50 mt-1">
+                      <MapPin className="mx-auto h-5 xs:h-6 w-5 xs:w-6 text-[#c8601a] mb-1.5 xs:mb-2" strokeWidth={1.5} />
+                      <p className="text-xs xs:text-sm font-medium text-white">{destination.name}</p>
+                      <p className="text-[10px] xs:text-xs text-white/50 mt-0.5 xs:mt-1">
                         {destination.lat.toFixed(4)}°N, {destination.lng.toFixed(4)}°E
                       </p>
                     </div>
@@ -443,9 +443,9 @@ export default function TripUnfolding() {
               />
 
               {/* Trip progress */}
-              <div className="py-5">
-                <div className="mb-3 flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.2em] text-white/30">
-                  <Compass className="h-3 w-3 text-[#c8601a]" strokeWidth={1.5} />
+              <div className="py-4 xs:py-5">
+                <div className="mb-2 xs:mb-3 flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] font-medium uppercase tracking-[0.2em] text-white/30">
+                  <Compass className="h-2.5 xs:h-3 w-2.5 xs:w-3 text-[#c8601a]" strokeWidth={1.5} />
                   Trip progress
                 </div>
                 <div className="flex gap-1">
@@ -459,7 +459,7 @@ export default function TripUnfolding() {
                     />
                   ))}
                 </div>
-                <p className="mt-2 text-[11px] text-white/30">
+                <p className="mt-1.5 xs:mt-2 text-[10px] xs:text-[11px] text-white/30">
                   Day {activeDay} of {DAYS.length}
                 </p>
               </div>
@@ -479,39 +479,39 @@ function ActivitySlot({ icon: Icon, label, text, refined }) {
       initial={refined ? { opacity: 0, y: 8 } : false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="rounded-lg xs:rounded-xl border border-white/10 bg-[#1c1c1e]/60 p-2 xs:p-3 sm:p-4 backdrop-blur-sm"
+      className="rounded-lg xs:rounded-xl border border-white/10 bg-[#1c1c1e]/60 p-1.5 xs:p-2 sm:p-3 md:p-4 backdrop-blur-sm"
     >
-      <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
-        <Icon className="h-2.5 xs:h-3 sm:h-3.5 w-2.5 xs:w-3 sm:w-3.5 text-[#c8601a]" strokeWidth={2} />
+      <div className="flex items-center gap-0.5 xs:gap-1 sm:gap-1.5 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-white/50">
+        <Icon className="h-2 xs:h-2.5 sm:h-3 md:h-3.5 w-2 xs:w-2.5 sm:w-3 md:w-3.5 text-[#c8601a]" strokeWidth={2} />
         {label}
       </div>
-      <p className="mt-1 xs:mt-1.5 sm:mt-2 text-[10px] xs:text-xs sm:text-sm font-light leading-relaxed text-white/85 line-clamp-3">{text}</p>
+      <p className="mt-0.5 xs:mt-1 sm:mt-1.5 md:mt-2 text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-light leading-relaxed text-white/85 line-clamp-3">{text}</p>
     </motion.div>
   );
 }
 
 function OpenStat({ icon: Icon, eyebrow, value, label, note, badge }) {
   return (
-    <div className="py-3 xs:py-4 sm:py-6">
-      <div className="mb-1 xs:mb-1.5 sm:mb-2 flex items-center gap-1.5 xs:gap-2 text-[9px] xs:text-[10px] sm:text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
-        <Icon className="h-2.5 xs:h-3 sm:h-3.5 w-2.5 xs:w-3 sm:w-3.5 text-[#c8601a]" strokeWidth={2} />
+    <div className="py-2.5 xs:py-3 sm:py-4 md:py-6">
+      <div className="mb-1 xs:mb-1.5 sm:mb-2 flex items-center gap-1 xs:gap-1.5 sm:gap-2 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
+        <Icon className="h-2 xs:h-2.5 sm:h-3 md:h-3.5 w-2 xs:w-2.5 sm:w-3 md:w-3.5 text-[#c8601a]" strokeWidth={2} />
         {eyebrow}
       </div>
-      <div className="flex items-baseline gap-1.5 xs:gap-2 sm:gap-2.5">
+      <div className="flex items-baseline gap-1 xs:gap-1.5 sm:gap-2 md:gap-2.5">
         {value && (
-          <span className="font-serif text-2xl xs:text-3xl sm:text-4xl font-light text-white">{value}</span>
+          <span className="font-serif text-xl xs:text-2xl sm:text-3xl md:text-4xl font-light text-white">{value}</span>
         )}
-        <span className="text-[10px] xs:text-xs sm:text-sm font-medium text-white/60">{label}</span>
+        <span className="text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-medium text-white/60">{label}</span>
         {badge && (
           <span className={cn(
-            'ml-auto text-[10px] xs:text-xs sm:text-sm font-semibold',
+            'ml-auto text-[9px] xs:text-[10px] sm:text-xs md:text-sm font-semibold',
             badge.startsWith('-') ? 'text-emerald-400' : 'text-white/50'
           )}>
             {badge}
           </span>
         )}
       </div>
-      {note && <p className="mt-1 xs:mt-1.5 sm:mt-2 text-[9px] xs:text-[10px] sm:text-xs font-light leading-relaxed text-white/35">{note}</p>}
+      {note && <p className="mt-0.5 xs:mt-1 sm:mt-1.5 md:mt-2 text-[8px] xs:text-[9px] sm:text-[10px] md:text-xs font-light leading-relaxed text-white/35">{note}</p>}
     </div>
   );
 }
