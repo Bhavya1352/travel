@@ -43,11 +43,8 @@ export default function Hero() {
         className="absolute inset-0 z-0 hero-bg will-change-transform"
       >
         <img
-          src={`https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '480' : '1920'}&q=${isMobile ? '30' : '60'}`}
-          srcSet={isMobile ? 
-            "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=320&q=30 320w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=480&q=30 480w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30 750w" :
-            "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1080&q=60 1080w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920&q=60 1920w"
-          }
+          src={`https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30`}
+          srcSet="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=320&q=30 320w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=480&q=30 480w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30 750w"
           sizes="100vw"
           alt="Dramatic mountain landscape at golden hour with misty valleys"
           loading="eager"
@@ -66,23 +63,17 @@ export default function Hero() {
       {/* Content */}
       <div className="relative z-20 flex w-full flex-col items-center px-4 xs:px-5 sm:px-6 lg:px-8 pt-16 xs:pt-20 sm:pt-24 md:pt-28 pb-8 xs:pb-10 sm:pb-12 md:pb-16">
         {/* Headline */}
-        <motion.h1
-          initial={false}
-          className="max-w-3xl xs:max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-7xl text-center font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 3xl:text-8xl font-light leading-[1.1] xs:leading-[1.15] sm:leading-[1.2] tracking-tight text-white px-2"
-        >
+        <h1 className="max-w-3xl xs:max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-7xl text-center font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 3xl:text-8xl font-light leading-[1.1] xs:leading-[1.15] sm:leading-[1.2] tracking-tight text-white px-2">
           Your journey,
           <br />
           <span className="italic text-white/90">thoughtfully planned.</span>
-        </motion.h1>
+        </h1>
 
         {/* Subtitle */}
-        <motion.p
-          initial={false}
-          className="mt-3 xs:mt-4 sm:mt-5 md:mt-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl text-center text-xs xs:text-sm sm:text-base md:text-lg font-light leading-relaxed text-white/70 px-2"
-        >
+        <p className="mt-3 xs:mt-4 sm:mt-5 md:mt-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl text-center text-xs xs:text-sm sm:text-base md:text-lg font-light leading-relaxed text-white/70 px-2">
           Tell us where you want to go. AI creates a personalized journey around
           your budget, interests, and travel style.
-        </motion.p>
+        </p>
 
         {/* Planner bar */}
         <div className="mt-6 xs:mt-8 sm:mt-10 md:mt-12 w-full max-w-4xl xs:max-w-5xl px-2 xs:px-0">
