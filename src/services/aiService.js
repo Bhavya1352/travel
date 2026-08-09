@@ -246,6 +246,21 @@ Generate the complete itinerary now.
     if (!response.ok) {
       const errorText = await response.text();
 
+      // Fallback to mock data on 429 (quota exceeded)
+      if (response.status === 429) {
+        console.warn('Gemini quota exceeded, using mock data');
+        return {
+          ...SAMPLE_ITINERARY,
+          destination: plan.destination,
+          startDate: plan.startDate,
+          endDate: plan.endDate,
+          travelers: plan.travelers,
+          budget: plan.budget,
+          travelStyle: plan.travelStyle,
+          isAiGenerated: false
+        };
+      }
+
       throw new Error(
         `Gemini API Error ${response.status}: ${errorText}`
       );
