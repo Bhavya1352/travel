@@ -271,7 +271,7 @@ export default function Itinerary() {
   };
 
   return (
-    <div className="min-h-screen bg-[#faf8f5] text-[#1a2e22]">
+    <div className="min-h-screen bg-[#faf8f5] text-[#1a2e22] w-full overflow-x-hidden">
       <Navbar />
 
       <AnimatePresence mode="wait">
@@ -346,7 +346,7 @@ export default function Itinerary() {
             key="dashboard"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mx-auto max-w-7xl px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10 pb-12 xs:pb-16 sm:pb-20 md:pb-24 pt-20 xs:pt-24 sm:pt-28 md:pt-32 lg:pt-40 overflow-hidden"
+            className="mx-auto max-w-7xl px-2 xs:px-3 sm:px-4 md:px-5 lg:px-6 xl:px-8 pb-12 xs:pb-16 sm:pb-20 md:pb-24 pt-20 xs:pt-24 sm:pt-28 md:pt-32 lg:pt-40 w-full"
           >
             {/* Error Display */}
             {itineraryError && (
@@ -428,10 +428,10 @@ export default function Itinerary() {
             </div>
 
             {/* Main Interactive Grid */}
-            <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 lg:grid-cols-[280px_1fr_340px]">
+            <div className="grid gap-3 xs:gap-4 sm:gap-6 lg:gap-8 grid-cols-1 lg:grid-cols-[280px_1fr_340px] w-full overflow-x-hidden">
 
               {/* LEFT COLUMN: Days Navigation & AI Refine panel */}
-              <div className="flex flex-col gap-6 xs:gap-8">
+              <div className="flex flex-col gap-6 xs:gap-8 w-full min-w-0">
                 <div>
                   <h3 className="mb-3 xs:mb-4 text-[10px] xs:text-xs font-bold uppercase tracking-[0.2em] text-[#1a2e22]/40">
                     Day selector
@@ -505,7 +505,7 @@ export default function Itinerary() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -15 }}
                       transition={{ duration: 0.35 }}
-                      className="relative overflow-hidden rounded-2xl border border-[#1a2e22]/10 bg-white p-4 xs:p-5 sm:p-6 lg:p-8 shadow-sm"
+                      className="relative overflow-hidden rounded-2xl border border-[#1a2e22]/10 bg-white p-4 xs:p-5 sm:p-6 lg:p-8 shadow-sm w-full min-w-0"
                     >
                       {/* Header */}
                       <div className="mb-6 flex flex-wrap items-start justify-between gap-4 border-b border-[#1a2e22]/10 pb-5">
@@ -567,7 +567,7 @@ export default function Itinerary() {
               </div>
 
               {/* RIGHT COLUMN: Interactive Widgets (Map, Weather, Budget) */}
-              <div className="flex flex-col divide-y divide-[#1a2e22]/10">
+              <div className="flex flex-col divide-y divide-[#1a2e22]/10 w-full min-w-0">
 
                 {/* Weather widget */}
                 <div className="pb-6">
@@ -658,18 +658,18 @@ function MetaBadge({ icon: Icon, text }) {
 
 function ItinerarySlot({ icon: Icon, title, text }) {
   return (
-    <div className="flex gap-3 xs:gap-4">
+    <div className="flex gap-3 xs:gap-4 w-full">
       <div className="flex flex-col items-center shrink-0">
         <div className="flex h-8 xs:h-10 w-8 xs:w-10 shrink-0 items-center justify-center rounded-full border border-[#1a2e22]/10 bg-[#faf8f5]">
           <Icon className="h-3 xs:h-4 w-3 xs:w-4 text-[#c8601a]" />
         </div>
         <div className="w-0.5 grow bg-[#1a2e22]/10 mt-2 min-h-[40px]" />
       </div>
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 max-w-full">
         <h4 className="text-[10px] xs:text-xs font-bold uppercase tracking-wider text-[#1a2e22]/40 mt-1">
           {title}
         </h4>
-        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80 break-words">
+        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80 break-words overflow-wrap-anywhere">
           {text}
         </p>
       </div>
