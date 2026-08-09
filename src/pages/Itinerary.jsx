@@ -281,7 +281,7 @@ export default function Itinerary() {
             key="loader"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#1a2e22] text-white px-6"
+            className="fixed inset-0 z-50 flex flex-col items-center justify-start pt-[20vh] bg-[#1a2e22] text-white px-6"
           >
             <div className="w-full max-w-md">
               <motion.div
