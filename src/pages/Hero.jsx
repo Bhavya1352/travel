@@ -35,17 +35,17 @@ export default function Hero() {
         }
       }}
     >
-      {/* Cinematic background with slow zoom */}
+      {/* Cinematic background with slow zoom (disabled on mobile for performance) */}
       <motion.div
-        initial={{ scale: 1.15 }}
+        initial={{ scale: isMobile ? 1 : 1.15 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 20, ease: 'easeOut' }}
+        transition={{ duration: isMobile ? 0 : 20, ease: 'easeOut' }}
         className="absolute inset-0 z-0 hero-bg will-change-transform"
       >
         <img
-          src={`https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '480' : '1920'}&q=${isMobile ? '40' : '60'}`}
+          src={`https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '480' : '1920'}&q=${isMobile ? '30' : '60'}`}
           srcSet={isMobile ? 
-            "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=320&q=40 320w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=480&q=40 480w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=40 750w" :
+            "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=320&q=30 320w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=480&q=30 480w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30 750w" :
             "https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1080&q=60 1080w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=1920&q=60 1920w"
           }
           sizes="100vw"

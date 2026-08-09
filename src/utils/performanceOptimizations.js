@@ -8,7 +8,7 @@ export function preloadCriticalImages() {
   if (typeof window === 'undefined') return;
 
   const isMobile = window.innerWidth < 768;
-  const heroImageUrl = `https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '750' : '1920'}&q=80`;
+  const heroImageUrl = `https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '480' : '1920'}&q=${isMobile ? '30' : '60'}`;
   
   const link = document.createElement('link');
   link.rel = 'preload';

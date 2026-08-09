@@ -35,12 +35,19 @@ export default function OptimizedImage({
       ? generatePexelsWebPSrcset(src, isMobile)
       : undefined);
 
+  // Also add WebP format to main src if it's a Pexels image
+  const finalSrc = src?.includes('pexels.com') && !src.includes('fm=webp') 
+    ? src.includes('?') 
+      ? `${src}&fm=webp` 
+      : `${src}?fm=webp`
+    : src;
+
   const finalSrcset = hasError ? undefined : autoSrcset;
 
   const imageClassName = `block w-full h-full object-cover ${className}`;
 
   const imageProps = {
-    src,
+    src: finalSrc,
     srcSet: finalSrcset,
     sizes,
     alt,
@@ -97,7 +104,7 @@ export function generatePexelsSrcset(baseUrl, isMobile = false) {
 
   const widths = isMobile ? mobileWidths : desktopWidths;
   const cleanBaseUrl = baseUrl.split('?')[0];
-  const quality = isMobile ? 40 : 60;
+  const quality = isMobile ? 30 : 60;
 
   return widths
     .map(
@@ -113,7 +120,7 @@ export function generatePexelsWebPSrcset(baseUrl, isMobile = false) {
 
   const widths = isMobile ? mobileWidths : desktopWidths;
   const cleanBaseUrl = baseUrl.split('?')[0];
-  const quality = isMobile ? 40 : 60;
+  const quality = isMobile ? 25 : 55;
 
   return widths
     .map(
