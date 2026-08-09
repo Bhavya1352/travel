@@ -67,9 +67,7 @@ export default function Hero() {
       <div className="relative z-20 flex w-full flex-col items-center px-4 xs:px-5 sm:px-6 lg:px-8 pt-16 xs:pt-20 sm:pt-24 md:pt-28 pb-8 xs:pb-10 sm:pb-12 md:pb-16">
         {/* Headline */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+          initial={false}
           className="max-w-3xl xs:max-w-4xl sm:max-w-5xl md:max-w-6xl lg:max-w-7xl text-center font-serif text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 3xl:text-8xl font-light leading-[1.1] xs:leading-[1.15] sm:leading-[1.2] tracking-tight text-white px-2"
         >
           Your journey,
@@ -79,9 +77,7 @@ export default function Hero() {
 
         {/* Subtitle */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.6 }}
+          initial={false}
           className="mt-3 xs:mt-4 sm:mt-5 md:mt-6 max-w-xs xs:max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl text-center text-xs xs:text-sm sm:text-base md:text-lg font-light leading-relaxed text-white/70 px-2"
         >
           Tell us where you want to go. AI creates a personalized journey around

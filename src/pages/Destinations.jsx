@@ -176,7 +176,7 @@ function DestinationCard({ dest, index, isFavorite, onToggleFavorite }) {
                 sizes="100vw"
                 alt={`${dest.name}, ${dest.country} - ${dest.tagline}`}
                 className="h-full w-full object-cover"
-                loading="eager"
+                loading="lazy"
               />
             </motion.div>
 
