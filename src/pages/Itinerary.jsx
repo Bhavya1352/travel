@@ -444,7 +444,7 @@ export default function Itinerary() {
                           key={day.day}
                           onClick={() => handleDayChange(day.day)}
                           className={cn(
-                            'group flex min-w-[5.5rem] xs:min-w-[6rem] sm:min-w-[7rem] md:min-w-[8rem] flex-col gap-1 xs:gap-1.5 border-b-2 pb-2 xs:pb-3 sm:pb-4 text-left transition-all duration-300 lg:min-w-0 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
+                            'group flex min-w-[4.5rem] xs:min-w-[5rem] sm:min-w-[6rem] md:min-w-[7rem] flex-col gap-1 xs:gap-1.5 border-b-2 pb-2 xs:pb-3 sm:pb-4 text-left transition-all duration-300 lg:min-w-0 lg:border-b-0 lg:border-l-2 lg:pb-0 lg:pl-4',
                             active
                               ? 'border-[#c8601a] text-[#1a2e22]'
                               : 'border-[#1a2e22]/10 text-[#1a2e22]/40 hover:border-[#1a2e22]/30'
@@ -669,7 +669,7 @@ function ItinerarySlot({ icon: Icon, title, text }) {
         <h4 className="text-[10px] xs:text-xs font-bold uppercase tracking-wider text-[#1a2e22]/40 mt-1">
           {title}
         </h4>
-        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80 break-words overflow-wrap-anywhere">
+        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80 break-all">
           {text}
         </p>
       </div>
