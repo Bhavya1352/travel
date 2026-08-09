@@ -492,7 +492,7 @@ export default function Itinerary() {
               </div>
 
               {/* CENTER COLUMN: Itinerary flow details */}
-              <div className="relative">
+              <div className="relative min-w-0">
                 {!selectedDay ? (
                   <div className="rounded-xl xs:rounded-2xl border border-[#1a2e22]/10 bg-white p-4 xs:p-6 sm:p-8 text-center">
                     <p className="text-[10px] xs:text-sm text-[#1a2e22]/60">Loading itinerary details...</p>
@@ -659,17 +659,17 @@ function MetaBadge({ icon: Icon, text }) {
 function ItinerarySlot({ icon: Icon, title, text }) {
   return (
     <div className="flex gap-3 xs:gap-4">
-      <div className="flex flex-col items-center">
+      <div className="flex flex-col items-center shrink-0">
         <div className="flex h-8 xs:h-10 w-8 xs:w-10 shrink-0 items-center justify-center rounded-full border border-[#1a2e22]/10 bg-[#faf8f5]">
           <Icon className="h-3 xs:h-4 w-3 xs:w-4 text-[#c8601a]" />
         </div>
         <div className="w-0.5 grow bg-[#1a2e22]/10 mt-2 min-h-[40px]" />
       </div>
-      <div>
+      <div className="flex-1 min-w-0">
         <h4 className="text-[10px] xs:text-xs font-bold uppercase tracking-wider text-[#1a2e22]/40 mt-1">
           {title}
         </h4>
-        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80">
+        <p className="mt-1.5 xs:mt-2 text-[13px] xs:text-[15px] font-normal leading-relaxed text-[#1a2e22]/80 break-words">
           {text}
         </p>
       </div>

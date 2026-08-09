@@ -119,33 +119,33 @@ export default function DayTimeline({ days, onRegenerateDay }) {
                               )}
 
                               {/* Activity details */}
-                              <div className="flex-1">
+                              <div className="flex-1 min-w-0">
                                 <div className="flex items-start justify-between gap-1.5 xs:gap-2">
-                                  <div>
+                                  <div className="min-w-0">
                                     <div className="flex items-center gap-1.5 xs:gap-2">
-                                      <span className="flex items-center gap-0.5 xs:gap-1 text-[10px] xs:text-xs font-medium text-[#c8601a]">
+                                      <span className="flex items-center gap-0.5 xs:gap-1 text-[10px] xs:text-xs font-medium text-[#c8601a] shrink-0">
                                         <Clock className="h-2.5 xs:h-3 w-2.5 xs:w-3" strokeWidth={1.5} />
                                         {activity.time}
                                       </span>
-                                      <span className="text-[10px] xs:text-xs font-light text-[#1a2e22]/30">·</span>
-                                      <span className="text-[10px] xs:text-xs font-light text-[#1a2e22]/40">{activity.duration}</span>
+                                      <span className="text-[10px] xs:text-xs font-light text-[#1a2e22]/30 shrink-0">·</span>
+                                      <span className="text-[10px] xs:text-xs font-light text-[#1a2e22]/40 shrink-0">{activity.duration}</span>
                                     </div>
-                                    <h4 className="mt-0.5 xs:mt-1 text-sm xs:text-base font-medium text-[#1a2e22]">{activity.title}</h4>
+                                    <h4 className="mt-0.5 xs:mt-1 text-sm xs:text-base font-medium text-[#1a2e22] break-words">{activity.title}</h4>
                                   </div>
                                   {activity.cost > 0 && (
-                                    <span className="flex items-center gap-0.5 xs:gap-1 rounded-full bg-[#1a2e22]/5 px-2 xs:px-2.5 py-0.5 xs:py-1 text-[10px] xs:text-xs font-medium text-[#1a2e22]/60">
+                                    <span className="flex items-center gap-0.5 xs:gap-1 rounded-full bg-[#1a2e22]/5 px-2 xs:px-2.5 py-0.5 xs:py-1 text-[10px] xs:text-xs font-medium text-[#1a2e22]/60 shrink-0">
                                       <DollarSign className="h-2.5 xs:h-3 w-2.5 xs:w-3" strokeWidth={1.5} />
                                       {activity.cost}
                                     </span>
                                   )}
                                 </div>
-                                <p className="mt-1 xs:mt-1.5 text-xs xs:text-sm font-light leading-relaxed text-[#1a2e22]/50">
+                                <p className="mt-1 xs:mt-1.5 text-xs xs:text-sm font-light leading-relaxed text-[#1a2e22]/50 break-words">
                                   {activity.description}
                                 </p>
                                 {activity.location && (
                                   <div className="mt-1.5 xs:mt-2 flex items-center gap-0.5 xs:gap-1 text-[10px] xs:text-xs font-light text-[#1a2e22]/30">
-                                    <MapPin className="h-2.5 xs:h-3 w-2.5 xs:w-3" strokeWidth={1.5} />
-                                    {activity.location.name}
+                                    <MapPin className="h-2.5 xs:h-3 w-2.5 xs:w-3 shrink-0" strokeWidth={1.5} />
+                                    <span className="break-words">{activity.location.name}</span>
                                   </div>
                                 )}
                               </div>

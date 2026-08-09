@@ -8,7 +8,6 @@ const ExploreDestinations = lazy(() => import('../components/ExploreDestinations
 const TripUnfolding = lazy(() => import('../components/TripUnfolding'));
 const HowItWorks = lazy(() => import('../components/HowItWorks'));
 const PersonalizationStats = lazy(() => import('../components/PersonalizationStats'));
-const Testimonials = lazy(() => import('../components/Testimonials'));
 const CTASection = lazy(() => import('../components/CTASection'));
 const Footer = lazy(() => import('../components/Footer'));
 
@@ -32,9 +31,6 @@ export default function Home() {
       </Suspense>
       <Suspense fallback={<div className="min-h-[200px]" />}>
         <PersonalizationStats />
-      </Suspense>
-      <Suspense fallback={<div className="min-h-[200px]" />}>
-        <Testimonials />
       </Suspense>
       <Suspense fallback={<div className="min-h-[200px]" />}>
         <CTASection />
