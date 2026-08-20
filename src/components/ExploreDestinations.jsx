@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
-import ScrollReveal, { RevealItem } from './ScrollReveal';
-import OptimizedImage, { generatePexelsSrcset, generateSizes } from './OptimizedImage';
+import ScrollReveal from './ScrollReveal';
+import OptimizedImage from './OptimizedImage';
 import { useDeviceOptimization } from '../hooks/useDeviceOptimization';
 import { DESTINATIONS } from '../data/destinations';
 
@@ -143,8 +143,8 @@ function MosaicImage({ dest, meta, size, isFeatured = false }) {
       ? 'h-[16rem] xs:h-[20rem] sm:h-[24rem] md:h-[28rem] lg:h-[44rem] xl:h-[54rem]'
       : 'h-[10rem] xs:h-[12rem] sm:h-[14rem] md:h-[16rem] lg:h-[20rem] xl:h-[22rem]';
 
-  // Use responsive srcset for better performance
-  const sizes = size === 'large' ? generateSizes('featured') : generateSizes('card');
+  // Use responsive sizes for better performance
+  const sizes = size === 'large' ? '(min-width: 1024px) 66vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw';
 
   return (
     <div className="group relative flex flex-col">

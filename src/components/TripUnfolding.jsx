@@ -17,7 +17,7 @@ import {
   RefreshCw,
 } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import OptimizedImage, { generatePexelsSrcset, generateSizes } from './OptimizedImage';
+import OptimizedImage from './OptimizedImage';
 import { getDestinationById } from '../data/destinations';
 import { cn } from '../utils/helpers';
 

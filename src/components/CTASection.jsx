@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import ScrollReveal from './ScrollReveal';
-import OptimizedImage, { generatePexelsSrcset, generateSizes } from './OptimizedImage';
+import OptimizedImage from './OptimizedImage';
 
 export default function CTASection() {
   return (
