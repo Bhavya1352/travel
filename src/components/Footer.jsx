@@ -52,7 +52,7 @@ export default function Footer() {
                   {FOOTER_DATA.brand.name}
                 </span>
               </Link>
-              <p className="text-[10px] xs:text-xs font-light leading-relaxed text-white/40">
+              <p className="text-[10px] xs:text-xs font-light leading-relaxed text-white/70">
                 {FOOTER_DATA.brand.tagline}
               </p>
               <div className="flex gap-2 xs:gap-3">
@@ -62,6 +62,7 @@ export default function Footer() {
                     <motion.a
                       key={platform.label}
                       href={platform.href}
+                      aria-label={platform.label}
                       whileHover={{ y: -3, scale: 1.1 }}
                       whileTap={{ scale: 0.95 }}
                       className="p-1.5 xs:p-2 rounded-full bg-white/5 hover:bg-[#c8601a] transition-colors duration-300 group"
@@ -196,9 +197,10 @@ export default function Footer() {
                 />
                 <motion.button
                   type="submit"
+                  aria-label="Subscribe to newsletter"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="absolute right-1 xs:right-1.5 top-1/2 -translate-y-1/2 p-1 xs:p-1.5 bg-[#c8601a] rounded-md hover:bg-[#e07a35] transition-colors duration-300"
+                  className="absolute right-1 xs:right-1.5 top-1/2 -translate-y-1/2 p-1 xs:p-1.5 bg-[#c8601a] rounded-md hover:bg-[#e07a35] text-white transition-colors duration-300"
                 >
                   {isSubscribed ? (
                     <motion.div
@@ -246,7 +248,7 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.5 }}
           className="flex flex-col gap-2 xs:gap-3 sm:gap-4 text-[9px] xs:text-[10px] sm:text-[11px] font-normal text-white/40 sm:flex-row sm:items-center sm:justify-between"
         >
-          <p>{FOOTER_DATA.legal.copyright}</p>
+          <p className="text-white/70">{FOOTER_DATA.legal.copyright}</p>
           <div className="flex flex-wrap gap-2 xs:gap-3 sm:gap-4 md:gap-5">
             {FOOTER_DATA.legal.links.map((link, i) => (
               <motion.a

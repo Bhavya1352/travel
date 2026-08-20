@@ -14,11 +14,7 @@ const Footer = lazy(() => import('../components/Footer'));
 // Home page — assembles the landing page sections in order.
 export default function Home() {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <div className="animate-in fade-in duration-500">
       <Hero />
       <Suspense fallback={<div className="min-h-[200px]" />}>
         <ExploreDestinations />
@@ -38,6 +34,6 @@ export default function Home() {
       <Suspense fallback={<div className="min-h-[200px]" />}>
         <Footer />
       </Suspense>
-    </motion.div>
+    </div>
   );
 }
