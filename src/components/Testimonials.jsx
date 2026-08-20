@@ -7,7 +7,7 @@ const TESTIMONIAL = {
   name: 'Elena Marchetti',
   location: 'Milan, Italy',
   trip: 'Santorini · 5 days',
-  avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=80&q=40',
+  avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=80&fm=webp&q=40',
   photo: 'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg',
 };
 

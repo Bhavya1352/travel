@@ -139,7 +139,7 @@ export default function Planner() {
                       }}
                       className="flex w-full items-center gap-2 xs:gap-3 px-3 xs:px-4 py-2 xs:py-3 text-left hover:bg-[#F7F4EE] transition-colors duration-150"
                     >
-                      <img src={d.image} alt="" loading="lazy" decoding="async" className="h-8 xs:h-10 w-12 xs:w-14 rounded-lg object-cover" />
+                      <img src={`${d.image.split('?')[0]}?auto=compress&cs=tinysrgb&w=100&fm=webp&q=40`} alt="" loading="lazy" decoding="async" className="h-8 xs:h-10 w-12 xs:w-14 rounded-lg object-cover" />
                       <div>
                         <div className="text-xs xs:text-sm font-light text-[#1a2e22]">{d.name}</div>
                         <div className="text-[10px] xs:text-xs text-[#1a2e22]/40">{d.country}</div>

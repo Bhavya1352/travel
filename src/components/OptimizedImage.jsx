@@ -35,11 +35,9 @@ export default function OptimizedImage({
       ? generatePexelsWebPSrcset(src, isMobile)
       : undefined);
 
-  // Also add WebP format to main src if it's a Pexels image
+  // Also add WebP format and reasonable defaults to main src if it's a Pexels image
   const finalSrc = src?.includes('pexels.com') && !src.includes('fm=webp') 
-    ? src.includes('?') 
-      ? `${src}&fm=webp` 
-      : `${src}?fm=webp`
+    ? `${src.split('?')[0]}?auto=compress&cs=tinysrgb&w=${isMobile ? 480 : 800}&fm=webp&q=${isMobile ? 30 : 50}`
     : src;
 
   const finalSrcset = hasError ? undefined : autoSrcset;
