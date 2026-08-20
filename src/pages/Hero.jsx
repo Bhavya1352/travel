@@ -41,7 +41,13 @@ export default function Hero() {
       >
         <picture>
           <source
-            srcSet={isMobile ? "/hero-webp-mobile.webp" : "/hero-webp.webp"}
+            media="(max-width: 768px)"
+            srcSet="/hero-webp-mobile.webp"
+            type="image/webp"
+          />
+          <source
+            media="(min-width: 769px)"
+            srcSet="/hero-webp.webp"
             type="image/webp"
           />
           <img
@@ -50,8 +56,6 @@ export default function Hero() {
             loading="eager"
             fetchpriority="high"
             decoding="sync"
-            width={isMobile ? 480 : 1920}
-            height={isMobile ? 320 : 1080}
             className="h-full w-full object-cover"
           />
         </picture>
