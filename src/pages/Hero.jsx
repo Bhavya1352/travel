@@ -42,18 +42,22 @@ export default function Hero() {
         transition={{ duration: isMobile ? 0 : 20, ease: 'easeOut' }}
         className="absolute inset-0 z-0 hero-bg will-change-transform"
       >
-        <img
-          src={`https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30`}
-          srcSet="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=320&q=30 320w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=480&q=30 480w,https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=750&q=30 750w"
-          sizes="100vw"
-          alt="Dramatic mountain landscape at golden hour with misty valleys"
-          loading="eager"
-          fetchpriority="high"
-          decoding="sync"
-          width={isMobile ? 480 : 1920}
-          height={isMobile ? 320 : 1080}
-          className="h-full w-full object-cover"
-        />
+        <picture>
+          <source
+            srcSet={isMobile ? "/hero-webp-mobile.webp" : "/hero-webp.webp"}
+            type="image/webp"
+          />
+          <img
+            src="/hero-webp.webp"
+            alt="Dramatic mountain landscape at golden hour with misty valleys"
+            loading="eager"
+            fetchpriority="high"
+            decoding="sync"
+            width={isMobile ? 480 : 1920}
+            height={isMobile ? 320 : 1080}
+            className="h-full w-full object-cover"
+          />
+        </picture>
       </motion.div>
 
       {/* Dark gradient overlay */}
