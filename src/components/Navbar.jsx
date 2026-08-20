@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { Menu, X, Compass } from 'lucide-react';
 import { NAV_LINKS } from '../data/travelOptions';
 import { cn } from '../utils/helpers';
@@ -27,12 +26,9 @@ export default function Navbar() {
   const subTextColor = scrolled || isDarkPage ? 'text-white/70' : 'text-[#1a2e22]/60';
 
   return (
-    <motion.nav
-      initial={{ y: -24, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+    <nav
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500 animate-in fade-in slide-in-from-top-6',
         scrolled
           ? 'bg-[#1c1c1e]/80 backdrop-blur-xl border-b border-white/10 py-3'
           : isDarkPage
@@ -43,18 +39,12 @@ export default function Navbar() {
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-3 xs:px-4 sm:px-5 md:px-6 lg:px-8 xl:px-10">
         {/* Brand */}
         <Link to="/" className="flex items-center gap-2 xs:gap-2.5 sm:gap-3 group">
-          <motion.div 
-            whileHover={{ rotate: 180, scale: 1.1 }} 
-            transition={{ duration: 0.5 }}
-            className="relative"
+          <div 
+            className="relative transition-transform duration-500 group-hover:rotate-180 group-hover:scale-110"
           >
             <Compass className={cn('h-4 xs:h-5 sm:h-6 md:h-7 w-4 xs:w-5 sm:w-6 md:w-7 transition-colors duration-500', scrolled || isDarkPage ? 'text-[#c8601a]' : 'text-[#c8601a]')} strokeWidth={1.5} />
-            <motion.div 
-              className="absolute inset-0 bg-[#c8601a]/20 rounded-full blur-xl"
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-          </motion.div>
+            <div className="absolute inset-0 bg-[#c8601a]/20 rounded-full blur-xl animate-pulse" />
+          </div>
           <span className={cn('font-serif text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl tracking-widest transition-colors duration-500', textColor)}>
             Voyara
           </span>
@@ -100,14 +90,11 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <motion.div
+        <div
           id="mobile-menu"
           role="navigation"
           aria-label="Mobile navigation"
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="overflow-hidden bg-[#1c1c1e]/95 backdrop-blur-xl lg:hidden"
+          className="overflow-hidden bg-[#1c1c1e]/95 backdrop-blur-xl lg:hidden animate-in slide-in-from-top-2 duration-300"
         >
           <nav className="flex flex-col gap-4 xs:gap-5 px-4 xs:px-6 py-5 xs:py-7">
             {NAV_LINKS.map((link) => (
@@ -129,8 +116,8 @@ export default function Navbar() {
               Plan a Trip
             </Link>
           </nav>
-        </motion.div>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
 }

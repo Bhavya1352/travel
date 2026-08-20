@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Sparkles, Calendar, Wallet, Users, Compass, ChevronDown, ArrowRight } from 'lucide-react';
 import { TRAVEL_STYLES, BUDGET_TIERS } from '../data/travelOptions';
 import { cn } from '../utils/helpers';
@@ -158,21 +157,16 @@ export default function HeroPlannerBar({ plan, updateField, onSubmit }) {
       </div>
 
       {/* ─── Popovers Panel Container ─── */}
-      <AnimatePresence>
-        {activePopover && (
-          <motion.div
-            ref={popoverRef}
-            role="dialog"
-            aria-label={`${activePopover} selection`}
-            id={`${activePopover}-popover`}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 8 }}
-            transition={{ duration: 0.25 }}
-            className="absolute left-1/2 -translate-x-1/2 top-full z-50 mt-2 xs:mt-3 sm:mt-4 w-[calc(100%-16px)] xs:w-[calc(100%-24px)] sm:w-full max-w-[260px] xs:max-w-xs sm:max-w-sm md:max-w-md rounded-lg xs:rounded-xl sm:rounded-2xl border border-white/10 bg-[#1a2e22] p-2.5 xs:p-3 sm:p-4 md:p-5 shadow-2xl backdrop-blur-xl"
-          >
-            {/* Popover Content wrapper */}
-            <div className="text-white">
+      {activePopover && (
+        <div
+          ref={popoverRef}
+          role="dialog"
+          aria-label={`${activePopover} selection`}
+          id={`${activePopover}-popover`}
+          className="absolute left-1/2 -translate-x-1/2 top-full z-50 mt-2 xs:mt-3 sm:mt-4 w-[calc(100%-16px)] xs:w-[calc(100%-24px)] sm:w-full max-w-[260px] xs:max-w-xs sm:max-w-sm md:max-w-md rounded-lg xs:rounded-xl sm:rounded-2xl border border-white/10 bg-[#1a2e22] p-2.5 xs:p-3 sm:p-4 md:p-5 shadow-2xl backdrop-blur-xl animate-in fade-in slide-in-from-top-2 duration-200"
+        >
+          {/* Popover Content wrapper */}
+          <div className="text-white">
               
               {/* 1. Dates Popover */}
               {activePopover === 'dates' && (
@@ -292,10 +286,8 @@ export default function HeroPlannerBar({ plan, updateField, onSubmit }) {
                 </div>
               )}
 
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </div>
   );
 }

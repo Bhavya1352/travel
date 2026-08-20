@@ -5,17 +5,7 @@
 
 // Preload critical images for faster LCP
 export function preloadCriticalImages() {
-  if (typeof window === 'undefined') return;
-
-  const isMobile = window.innerWidth < 768;
-  const heroImageUrl = `https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg?auto=compress&cs=tinysrgb&w=${isMobile ? '480' : '1920'}&q=${isMobile ? '30' : '60'}`;
-  
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = heroImageUrl;
-  link.crossOrigin = 'anonymous';
-  document.head.appendChild(link);
+  // Unused preloading removed per user request
 }
 
 // Optimize main thread by deferring non-critical work

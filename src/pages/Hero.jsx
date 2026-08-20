@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import Navbar from '../components/Navbar';
 import HeroPlannerBar from '../components/HeroPlannerBar';
 import { useTripPlanner } from '../hooks/useTripPlanner';
@@ -35,12 +34,10 @@ export default function Hero() {
         }
       }}
     >
-      {/* Cinematic background with slow zoom (disabled on mobile for performance) */}
-      <motion.div
-        initial={{ scale: isMobile ? 1 : 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: isMobile ? 0 : 20, ease: 'easeOut' }}
+      {/* Cinematic background with CSS slow zoom (disabled on mobile for performance) */}
+      <div
         className="absolute inset-0 z-0 hero-bg will-change-transform"
+        style={{ animation: isMobile ? 'none' : 'hero-zoom 20s ease-out forwards' }}
       >
         <picture>
           <source
@@ -58,7 +55,7 @@ export default function Hero() {
             className="h-full w-full object-cover"
           />
         </picture>
-      </motion.div>
+      </div>
 
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#1c1c1e]/70 via-[#1c1c1e]/40 to-[#1c1c1e]/85" />
