@@ -285,9 +285,9 @@ export default function HeroPlannerBar({ plan, updateField, onSubmit }) {
                   ))}
                 </div>
               )}
-
-        </div>
-      )}
+            </div>
+          </div>
+        )}
     </div>
   );
 }
