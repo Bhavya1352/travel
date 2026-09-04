@@ -262,10 +262,9 @@ export default function TripUnfolding() {
                   <OptimizedImage
                     key={selected.image}
                     src={selected.image}
-                    srcset={undefined}
-                    sizes="100vw"
+                    priority
+                    sizes="(min-width: 1024px) 66vw, 100vw"
                     alt={`${destination.name} day ${selected.day} - ${selected.title}: ${displayData.location}`}
-                    loading="lazy"
                     className="h-full w-full object-cover"
                     width={1200}
                     height={800}
@@ -412,8 +411,7 @@ export default function TripUnfolding() {
                   {/* Static map placeholder image - much faster than iframe */}
                   <OptimizedImage
                     src={`https://images.pexels.com/photos/2339009/pexels-photo-2339009.jpeg`}
-                    srcset={undefined}
-                    sizes="100vw"
+                    sizes="(min-width: 1024px) 400px, 100vw"
                     alt={`Map location of ${displayData.location} in ${destination.name}`}
                     loading="lazy"
                     className="h-full w-full object-cover opacity-60"

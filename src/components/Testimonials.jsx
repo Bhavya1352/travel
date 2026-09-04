@@ -21,7 +21,6 @@ export default function Testimonials() {
           <ScrollReveal className="relative h-[240px] xs:h-[280px] sm:h-[320px] lg:h-[360px] overflow-hidden lg:h-auto">
             <OptimizedImage
               src={TESTIMONIAL.photo}
-              srcset={undefined}
               sizes="100vw"
               alt="Traveler Elena Marchetti enjoying a scenic view during her Santorini trip"
               className="h-full w-full object-cover"

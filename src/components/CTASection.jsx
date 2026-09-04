@@ -9,11 +9,10 @@ export default function CTASection() {
       <div className="absolute inset-0">
         <OptimizedImage
           src="https://images.pexels.com/photos/417074/pexels-photo-417074.jpeg"
-          srcset={undefined}
+          priority
           sizes="100vw"
           alt=""
           role="presentation"
-          loading="lazy"
           className="h-full w-full object-cover"
           width={1920}
           height={1080}

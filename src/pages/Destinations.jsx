@@ -172,8 +172,7 @@ function DestinationCard({ dest, index, isFavorite, onToggleFavorite }) {
             >
               <OptimizedImage
                 src={dest.image}
-                srcset={undefined}
-                sizes="100vw"
+                sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                 alt={`${dest.name}, ${dest.country} - ${dest.tagline}`}
                 className="h-full w-full object-cover"
                 loading="lazy"
